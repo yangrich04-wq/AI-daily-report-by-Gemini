@@ -18,14 +18,9 @@ jobs:
       - name: 拉取仓库文件
         uses: actions/checkout@v4
 
-      - name: 自动解压部署包（首次运行）
-        run: |
-          if [ -f ai_daily_pwa_flat.zip ]; then
-            unzip -o ai_daily_pwa_flat.zip
-            rm -f ai_daily_pwa_flat.zip
-          fi
-
-      - name: 抓取最新 AI 动态并更新 daily_data.json
+      - name: 抓取最新 AI 动态并自动翻译提炼中文重点
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           python3 - << 'EOF'
           import datetime, html, json, os, re, urllib.request
@@ -39,7 +34,7 @@ jobs:
               {"url": "https://rss.arxiv.org/rss/cs.AI", "tag": "AI 科学前沿", "color": "rose", "tab": "frontier", "source": "arXiv cs.AI"},
           ]
 
-          def clean(raw, limit=140):
+          def clean(raw, limit=200):
               if not raw: return ""
               t = re.sub(r"<[^>]+>", " ", html.unescape(raw))
               t = re.sub(r"\s+", " ", t).strip()
@@ -55,9 +50,9 @@ jobs:
                   req = urllib.request.Request(f["url"], headers={"User-Agent": "AI-Daily-Bot/1.0"})
                   root = ET.fromstring(urllib.request.urlopen(req, timeout=15).read())
                   for node in root.findall(".//item")[:2]:
-                      title = clean(node.findtext("title"), 90)
+                      title = clean(node.findtext("title"), 100)
                       link = (node.findtext("link") or "").strip()
-                      desc = clean(node.findtext("description"), 150)
+                      desc = clean(node.findtext("description"), 220)
                       if title and link and title not in seen:
                           seen.add(title)
                           collected.append({
@@ -69,14 +64,41 @@ jobs:
               except Exception as e:
                   print("Skip", f["source"], e)
 
-          if collected:
+          items = collected[:6]
+          api_key = os.environ.get("GEMINI_API_KEY", "").strip()
+          if items and api_key:
+              prompt = (
+                  "你是面向中国学生的AI日报主编。请把下面JSON数组里每条新闻的 title 翻译为精炼自然的中文标题，"
+                  "把 summary 翻译并提炼为2到3句中文重点（突出核心变化与对学习或未来就业的启发），"
+                  "保持 id、tag、color、tab、sourceTitle、sourceUrl 原样不变，只输出合法JSON数组：\n"
+                  + json.dumps(items, ensure_ascii=False)
+              )
+              body = json.dumps({
+                  "contents": [{"parts": [{"text": prompt}]}],
+                  "generationConfig": {"responseMimeType": "application/json"}
+              }).encode("utf-8")
+              for model in ("gemini-2.5-flash", "gemini-2.0-flash"):
+                  try:
+                      url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
+                      req = urllib.request.Request(url, data=body, headers={"Content-Type": "application/json"})
+                      res = json.loads(urllib.request.urlopen(req, timeout=45).read().decode("utf-8"))
+                      text = res["candidates"][0]["content"]["parts"][0]["text"]
+                      parsed = json.loads(text)
+                      if isinstance(parsed, list) and len(parsed) > 0:
+                          items = parsed
+                          print("Translated with", model)
+                          break
+                  except Exception as e:
+                      print("Gemini translate failed on", model, e)
+
+          if items:
               with open("daily_data.json", "w", encoding="utf-8") as fp:
-                  json.dump({"updatedAt": date_str, "todayDigests": collected[:6]}, fp, ensure_ascii=False, indent=2)
+                  json.dump({"updatedAt": date_str, "todayDigests": items}, fp, ensure_ascii=False, indent=2)
           EOF
 
       - name: 自动保存更新
         run: |
           git config user.name "AI Daily Bot"
           git config user.email "bot@users.noreply.github.com"
-          git add -A
-          git diff --staged --quiet || (git commit -m "chore: 自动更新每日AI日报" && git push)
+          git add daily_data.json
+          git diff --staged --quiet || (git commit -m "chore: 自动更新全中文AI日报" && git push)
