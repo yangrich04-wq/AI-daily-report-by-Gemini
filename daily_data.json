@@ -6,8 +6,8 @@
       "tag": "Google AI 动态",
       "color": "indigo",
       "tab": "capability",
-      "title": "How Gemini is changing the game for Golden State's organization and fans.",
-      "summary": "Google Gemini partners with Golden State to power fan experiences and business operations for the Warriors, Valkyries, and Chase Center. See the news.",
+      "title": "Gemini 助力金州勇士队全面升级运营与球迷体验",
+      "summary": "谷歌 Gemini 与金州勇士体系达成合作，为勇士队、女武神队及大通中心提供智能化球迷服务与商业运营支持。这标志着大模型正加速落地体育产业的真实业务场景。对相关专业的学生而言，掌握 AI 与体育管理、数字营销及场馆运营的跨界融合能力，将成为未来求职的新优势。",
       "sourceTitle": "Google AI Blog",
       "sourceUrl": "https://blog.google/products-and-platforms/products/gemini/gemini-golden-state/"
     },
@@ -16,8 +16,8 @@
       "tag": "Google AI 动态",
       "color": "indigo",
       "tab": "capability",
-      "title": "A more tailored Google Search that’s uniquely yours",
-      "summary": "Get more helpful Search responses by securely opting in to connect Google Wallet, Drive, and the Gemini app to Personal Intelligence in AI Mode.",
+      "title": "谷歌搜索推出“个人智能”连接，打造专属定制体验",
+      "summary": "用户可在 AI 模式下安全授权，将 Google Wallet、Drive 和 Gemini 应用接入“个人智能”功能，从而在谷歌搜索中获得高度个性化的回答。搜索引擎正从通用信息检索向结合个人上下文的智能助理加速演进。同学们在日常学习中善用这类个性化工作流工具，能大幅提升资料整理与知识检索的效率。",
       "sourceTitle": "Google AI Blog",
       "sourceUrl": "https://blog.google/products-and-platforms/products/search/google-search-personal-intelligence-apps/"
     },
@@ -26,8 +26,8 @@
       "tag": "OpenAI 动态",
       "color": "emerald",
       "tab": "capability",
-      "title": "GPT-6 models demonstrate intrinsic protein-design capabilities",
-      "summary": "GPT-6 models design protein structures and sequences using reasoning and code. Lab tests found evidence of binding across five targets.",
+      "title": "GPT-6 展现原生蛋白质设计能力，多靶点实验获验证",
+      "summary": "GPT-6 模型能够利用推理与编程能力直接设计蛋白质结构及序列，并在实验室测试中成功验证了与五个靶点的结合能力。这一突破表明通用大模型的科学推理正直接赋能生命科学底层研发。对生物、医药及计算机背景的学生来说，“AI+生命科学”的跨学科技能正变得愈发关键。",
       "sourceTitle": "OpenAI News",
       "sourceUrl": "https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities"
     },
@@ -36,8 +36,8 @@
       "tag": "OpenAI 动态",
       "color": "emerald",
       "tab": "capability",
-      "title": "Searching for distant planets with Astra",
-      "summary": "See how two amateur astronomers used Codex and Astra to find potential exoplanets in public data from NASA’s Kepler and TESS space telescopes.",
+      "title": "业余天文学家借助 Codex 与 Astra 搜寻遥远系外行星",
+      "summary": "两名业余天文学家利用 Codex 和 Astra，从 NASA 开普勒与 TESS 太空望远镜的公开数据中成功发掘出潜在的系外行星。AI 工具的普及大幅降低了专业科研数据的分析门槛，让非科班人士也能参与前沿科学探索。这启发学生们可以积极借助开源数据与 AI 助手开展跨领域项目，提升自身科研实践力。",
       "sourceTitle": "OpenAI News",
       "sourceUrl": "https://openai.com/index/searching-for-distant-planets-with-astra"
     },
@@ -46,8 +46,8 @@
       "tag": "前沿与政策",
       "color": "cyan",
       "tab": "frontier",
-      "title": "AI is straining America’s open records systems",
-      "summary": "In Panton, Vermont, population 660, town clerk Kyle Rowe did it all. He crafted budgets, paid vendors, handled property tax disputes, and served as the town’s zoning supervisor and presiding elections officer. During mor...",
+      "title": "AI 自动化请求激增，美国公共档案系统承压",
+      "summary": "随着 AI 自动生成和批量提交信息查询的成本趋近于零，美国多地基层公共档案与政务系统正面临前所未有的处理压力。技术效率的提升在带来便利的同时，也引发了行政资源挤兑等现实治理难题。关注公共管理、法学与 AI 治理的同学，未来可重点关注技术监管与基层数字化转型的平衡之道。",
       "sourceTitle": "MIT Technology Review",
       "sourceUrl": "https://www.technologyreview.com/2026/11/25/1149702/ai-is-straining-americas-open-records-systems/"
     },
@@ -56,8 +56,8 @@
       "tag": "前沿与政策",
       "color": "cyan",
       "tab": "frontier",
-      "title": "A legendary philosopher isn’t buying Anthropic’s consciousness argument",
-      "summary": "This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox first, sign up here. Before going public last week, Anthropic named the possibility that AI could be co...",
+      "title": "知名哲学家质疑 Anthropic 关于 AI 意识的论断",
+      "summary": "针对 Anthropic 近期提出“AI 可能具备意识”的观点，一位知名哲学家公开表达了质疑，引发了关于机器心智边界的新一轮探讨。随着大模型能力不断逼近人类水平，AI 伦理与哲学界定的争议正持续升温。这提醒理工与人文社科学生，在追求技术突破的同时，也应培养科技伦理与批判性思维以应对未来行业规范演变。",
       "sourceTitle": "MIT Technology Review",
       "sourceUrl": "https://www.technologyreview.com/2026/11/23/1149569/a-legendary-philosopher-isnt-buying-anthropics-consciousness-argument/"
     }
