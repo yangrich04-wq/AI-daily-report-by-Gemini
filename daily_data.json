@@ -1,0 +1,65 @@
+{
+  "updatedAt": "2026年11月27日",
+  "todayDigests": [
+    {
+      "id": "auto_20261127_1",
+      "tag": "Google AI 动态",
+      "color": "indigo",
+      "tab": "capability",
+      "title": "How Gemini is changing the game for Golden State's organization and fans.",
+      "summary": "Google Gemini partners with Golden State to power fan experiences and business operations for the Warriors, Valkyries, and Chase Center. See the news.",
+      "sourceTitle": "Google AI Blog",
+      "sourceUrl": "https://blog.google/products-and-platforms/products/gemini/gemini-golden-state/"
+    },
+    {
+      "id": "auto_20261127_2",
+      "tag": "Google AI 动态",
+      "color": "indigo",
+      "tab": "capability",
+      "title": "A more tailored Google Search that’s uniquely yours",
+      "summary": "Get more helpful Search responses by securely opting in to connect Google Wallet, Drive, and the Gemini app to Personal Intelligence in AI Mode.",
+      "sourceTitle": "Google AI Blog",
+      "sourceUrl": "https://blog.google/products-and-platforms/products/search/google-search-personal-intelligence-apps/"
+    },
+    {
+      "id": "auto_20261127_3",
+      "tag": "OpenAI 动态",
+      "color": "emerald",
+      "tab": "capability",
+      "title": "GPT-6 models demonstrate intrinsic protein-design capabilities",
+      "summary": "GPT-6 models design protein structures and sequences using reasoning and code. Lab tests found evidence of binding across five targets.",
+      "sourceTitle": "OpenAI News",
+      "sourceUrl": "https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities"
+    },
+    {
+      "id": "auto_20261127_4",
+      "tag": "OpenAI 动态",
+      "color": "emerald",
+      "tab": "capability",
+      "title": "Searching for distant planets with Astra",
+      "summary": "See how two amateur astronomers used Codex and Astra to find potential exoplanets in public data from NASA’s Kepler and TESS space telescopes.",
+      "sourceTitle": "OpenAI News",
+      "sourceUrl": "https://openai.com/index/searching-for-distant-planets-with-astra"
+    },
+    {
+      "id": "auto_20261127_5",
+      "tag": "前沿与政策",
+      "color": "cyan",
+      "tab": "frontier",
+      "title": "AI is straining America’s open records systems",
+      "summary": "In Panton, Vermont, population 660, town clerk Kyle Rowe did it all. He crafted budgets, paid vendors, handled property tax disputes, and served as th...",
+      "sourceTitle": "MIT Technology Review",
+      "sourceUrl": "https://www.technologyreview.com/2026/11/25/1149702/ai-is-straining-americas-open-records-systems/"
+    },
+    {
+      "id": "auto_20261127_6",
+      "tag": "前沿与政策",
+      "color": "cyan",
+      "tab": "frontier",
+      "title": "A legendary philosopher isn’t buying Anthropic’s consciousness argument",
+      "summary": "This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox first, sign up here. Before going...",
+      "sourceTitle": "MIT Technology Review",
+      "sourceUrl": "https://www.technologyreview.com/2026/11/23/1149569/a-legendary-philosopher-isnt-buying-anthropics-consciousness-argument/"
+    }
+  ]
+}

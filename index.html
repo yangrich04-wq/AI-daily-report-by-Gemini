@@ -1,0 +1,2008 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="智潮日报" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png?v=2" />
+  <title>智潮日报 · AI Daily — 每日AI动态与未来现实路径</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+      -webkit-font-smoothing: antialiased;
+    }
+    .tab-panel {
+      display: none;
+    }
+    .tab-panel.active {
+      display: block;
+      animation: fadeIn 0.22s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(10px);
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Top Sticky Navigation -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 gap-3">
+        <!-- Brand -->
+        <button id="brandHomeBtn" type="button" class="flex items-center gap-2.5 text-left shrink-0 group">
+          <div class="w-9 h-9 rounded-xl bg-slate-900 text-white flex items-center justify-center shadow-sm group-hover:bg-indigo-600 transition-colors">
+            <i data-lucide="compass" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-extrabold text-base tracking-tight text-slate-900">智潮日报</span>
+              <span class="hidden sm:inline-block text-[11px] font-semibold px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-100">AI DAILY</span>
+            </div>
+            <p class="text-[11px] text-slate-500 hidden sm:block">2026年11月27日 · 现实路径决策站</p>
+          </div>
+        </button>
+
+        <!-- Desktop Single-Line Tabs -->
+        <nav class="hidden lg:flex items-center gap-1" aria-label="主导航">
+          <button type="button" data-tab="brief" class="nav-tab px-3 py-2 rounded-lg text-sm font-medium transition-colors bg-slate-900 text-white">今日头版</button>
+          <button type="button" data-tab="capability" class="nav-tab px-3 py-2 rounded-lg text-sm font-medium transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100">能力与讲义</button>
+          <button type="button" data-tab="policy" class="nav-tab px-3 py-2 rounded-lg text-sm font-medium transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100">政策雷达</button>
+          <button type="button" data-tab="frontier" class="nav-tab px-3 py-2 rounded-lg text-sm font-medium transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100">前沿与科学</button>
+          <button type="button" data-tab="apps" class="nav-tab px-3 py-2 rounded-lg text-sm font-medium transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100">应用剖析</button>
+          <button type="button" data-tab="career" class="nav-tab px-3 py-2 rounded-lg text-sm font-medium transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100">就业与报考</button>
+        </nav>
+
+        <!-- Right Controls -->
+        <div class="flex items-center gap-2 shrink-0">
+          <button id="installAppBtn" type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold transition-colors shadow-sm" title="安装到手机或电脑桌面">
+            <i data-lucide="smartphone" class="w-4 h-4"></i>
+            <span class="hidden sm:inline">安装App</span>
+          </button>
+          <button id="openSearchBtn" type="button"  class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-600 text-sm transition-colors" title="搜索全站情报">
+            <i data-lucide="search" class="w-4 h-4"></i>
+            <span class="hidden sm:inline">检索</span>
+          </button>
+          <button id="openDrawerBtn" type="button" class="relative inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-sm font-medium transition-colors">
+            <i data-lucide="bookmark" class="w-4 h-4 text-indigo-600"></i>
+            <span class="hidden sm:inline">收藏与笔记</span>
+            <span id="bookmarkBadge" class="inline-flex items-center justify-center min-w-[20px] h-5 px-1 text-xs font-bold rounded-full bg-indigo-600 text-white">0</span>
+          </button>
+          <button id="mobileMenuBtn" type="button" class="lg:hidden inline-flex items-center justify-center p-2 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-100" aria-label="打开菜单">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Collapsible Navigation -->
+      <div id="mobileMenu" class="hidden lg:hidden pb-3 pt-1 border-t border-slate-100">
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
+          <button type="button" data-tab="brief" class="mobile-nav-tab px-3 py-2 rounded-lg text-sm font-medium text-left bg-slate-900 text-white">今日头版</button>
+          <button type="button" data-tab="capability" class="mobile-nav-tab px-3 py-2 rounded-lg text-sm font-medium text-left text-slate-600 hover:bg-slate-100">能力与讲义</button>
+          <button type="button" data-tab="policy" class="mobile-nav-tab px-3 py-2 rounded-lg text-sm font-medium text-left text-slate-600 hover:bg-slate-100">政策雷达</button>
+          <button type="button" data-tab="frontier" class="mobile-nav-tab px-3 py-2 rounded-lg text-sm font-medium text-left text-slate-600 hover:bg-slate-100">前沿与科学</button>
+          <button type="button" data-tab="apps" class="mobile-nav-tab px-3 py-2 rounded-lg text-sm font-medium text-left text-slate-600 hover:bg-slate-100">应用剖析</button>
+          <button type="button" data-tab="career" class="mobile-nav-tab px-3 py-2 rounded-lg text-sm font-medium text-left text-slate-600 hover:bg-slate-100">就业与报考</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+
+    <!-- ==================== TAB 1: 今日头版 ==================== -->
+    <section id="tab-brief" class="tab-panel active space-y-6">
+      <!-- Hero Banner -->
+      <div class="relative rounded-2xl overflow-hidden bg-slate-900 text-white shadow-lg border border-slate-800">
+        <img src="./assets/hero.jpg" alt="智潮日报头版视觉" class="absolute inset-0 w-full h-full object-cover opacity-55" />
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-900/80 to-slate-900/40"></div>
+        <div class="relative p-6 sm:p-8 lg:p-10 max-w-3xl space-y-4">
+          <div class="flex flex-wrap items-center gap-2 text-xs font-semibold">
+            <span class="px-2.5 py-1 rounded-full bg-cyan-500/20 text-cyan-200 border border-cyan-400/30">2026年11月27日 · 第331期</span>
+            <span class="px-2.5 py-1 rounded-full bg-indigo-500/20 text-indigo-200 border border-indigo-400/30">全维度情报 · 现实路径</span>
+          </div>
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight">
+            不止于饭后谈资：把每日 AI 演进，转化为你的学习讲义与未来职业坐标
+          </h1>
+          <p class="text-slate-200 text-sm sm:text-base leading-relaxed">
+            聚焦 2026 全球大模型能力梯队、合规监管进展、AI for Science 2.0 突破、企业落地 J 型曲线，以及教育部 2026 新增交叉学科与 WEF 未来就业数据——助你用对工具、选准赛道、看见真实机遇。
+          </p>
+          <div class="flex flex-wrap gap-2.5 pt-2">
+            <button type="button" data-jump="capability" class="jump-btn inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-500 hover:bg-indigo-400 text-white text-sm font-semibold transition-colors shadow-sm">
+              <i data-lucide="sparkles" class="w-4 h-4"></i>
+              打开学习讲义选型器
+            </button>
+            <button type="button" data-jump="career" class="jump-btn inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-sm font-semibold border border-white/20 transition-colors">
+              <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+              专业报考与就业评估
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 Grounded KPI Stat Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between text-xs font-medium text-slate-500 mb-2">
+            <span>2026年11月全球新发模型</span>
+            <i data-lucide="sparkles" class="w-4 h-4 text-emerald-600"></i>
+          </div>
+          <div class="text-2xl font-extrabold text-slate-900">26 <span class="text-sm font-medium text-slate-500">款已确认</span></div>
+          <p class="text-xs text-slate-600 mt-1.5">含 GPT-6.2、Gemini 4、Claude Fable 5.2、Qwen4-Max、GLM-5.4</p>
+          <a href="https://benchlm.ai/model-updates/releases/november-2026" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs text-indigo-600 hover:underline mt-2">BenchLM 11月追踪 <i data-lucide="external-link" class="w-3 h-3"></i></a>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between text-xs font-medium text-slate-500 mb-2">
+            <span>2025–2030 全球岗位净增</span>
+            <i data-lucide="trending-up" class="w-4 h-4 text-indigo-600"></i>
+          </div>
+          <div class="text-2xl font-extrabold text-slate-900">+7,800 <span class="text-sm font-medium text-slate-500">万</span></div>
+          <p class="text-xs text-slate-600 mt-1.5">新增1.7亿 vs 取代9,200万；近40%技能将迭代</p>
+          <a href="https://cn.weforum.org/stories/artificial-intelligence/ai-paradoxes-in-2026" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs text-indigo-600 hover:underline mt-2">世界经济论坛报告 <i data-lucide="external-link" class="w-3 h-3"></i></a>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between text-xs font-medium text-slate-500 mb-2">
+            <span>2026 教育部新增本科专业</span>
+            <i data-lucide="book-open" class="w-4 h-4 text-amber-600"></i>
+          </div>
+          <div class="text-2xl font-extrabold text-slate-900">38 <span class="text-sm font-medium text-slate-500">种</span></div>
+          <p class="text-xs text-slate-600 mt-1.5">9所高校首批增设具身智能；专业调整首破10%</p>
+          <a href="https://www.cernet.edu.cn/xxh/focus/zc/202604/t20260430_2732185.shtml" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs text-indigo-600 hover:underline mt-2">2026本科专业目录 <i data-lucide="external-link" class="w-3 h-3"></i></a>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between text-xs font-medium text-slate-500 mb-2">
+            <span>中国日均 Token 调用量</span>
+            <i data-lucide="zap" class="w-4 h-4 text-cyan-600"></i>
+          </div>
+          <div class="text-2xl font-extrabold text-slate-900">140 <span class="text-sm font-medium text-slate-500">万亿/日</span></div>
+          <p class="text-xs text-slate-600 mt-1.5">两年增超千倍；上海目标2028年8,000台人形机器人进厂</p>
+          <a href="https://finance.sina.cn/tech/2026-11-02/detail-inixkeur0355406.d.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs text-indigo-600 hover:underline mt-2">2026.11 虹桥科技周数据 <i data-lucide="external-link" class="w-3 h-3"></i></a>
+        </div>
+      </div>
+
+      <!-- Daily 6-Pillar Digest Grid -->
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-lg font-bold text-slate-900">今日六大核心情报速览</h2>
+          <p class="text-xs text-slate-500 mt-0.5">点击任意卡片直达深度模块，或收藏至个人学习笔记</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <label for="editionSelect" class="text-xs text-slate-500 hidden sm:inline">切换专题期号:</label>
+          <select id="editionSelect" class="text-xs font-medium bg-white border border-slate-200 rounded-lg px-2.5 py-1.5 text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <option value="today">2026-11-27 · 今日综合版</option>
+            <option value="study">2026-11-26 · 讲义与科研专题</option>
+            <option value="career">2026-11-25 · 志愿与产业专题</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="dailyDigestGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </section>
+
+    <!-- ==================== TAB 2: AI能力与讲义工坊 ==================== -->
+    <section id="tab-capability" class="tab-panel space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-indigo-600">AI Capability & Study Handout Lab</span>
+          <h2 class="text-2xl font-extrabold text-slate-900 mt-0.5">AI 能力对比与学习讲义制作工坊</h2>
+          <p class="text-sm text-slate-600 mt-1">基于 2026 权威横向评测，明确每个模型的专项长板，精准匹配你的学习讲义与备课工作流。</p>
+        </div>
+        <a href="https://benchlm.ai/model-updates/releases/november-2026" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-medium text-indigo-600 hover:underline shrink-0">
+          查看 2026年11月最新模型发布榜 <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+
+      <!-- Interactive Study Handout Matcher -->
+      <div class="bg-white rounded-2xl border border-indigo-100 shadow-sm overflow-hidden">
+        <div class="bg-gradient-to-r from-indigo-600 to-slate-900 px-6 py-4 text-white flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-2">
+            <i data-lucide="wand-2" class="w-5 h-5 text-cyan-300"></i>
+            <h3 class="font-bold text-base">交互式「学习讲义 AI 选型器」</h3>
+          </div>
+          <span class="text-xs text-indigo-100">选择你的素材与产出目标，立即生成最优模型组合与 Prompt</span>
+        </div>
+        <div class="p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-5 space-y-5">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2.5">1. 你手头的原始资料是什么？</p>
+              <div id="handoutInputGroup" class="grid grid-cols-2 gap-2">
+                <button type="button" data-input="paper" class="handout-input-btn px-3 py-2.5 rounded-xl border text-left text-xs font-semibold transition-all bg-indigo-50 border-indigo-500 text-indigo-900">
+                  <div class="flex items-center gap-1.5"><i data-lucide="file-text" class="w-4 h-4 text-indigo-600"></i> 论文 / 万字PDF</div>
+                </button>
+                <button type="button" data-input="media" class="handout-input-btn px-3 py-2.5 rounded-xl border text-left text-xs font-semibold transition-all bg-white border-slate-200 text-slate-700 hover:border-slate-300">
+                  <div class="flex items-center gap-1.5"><i data-lucide="video" class="w-4 h-4 text-slate-500"></i> 课堂录屏 / 音视频</div>
+                </button>
+                <button type="button" data-input="code" class="handout-input-btn px-3 py-2.5 rounded-xl border text-left text-xs font-semibold transition-all bg-white border-slate-200 text-slate-700 hover:border-slate-300">
+                  <div class="flex items-center gap-1.5"><i data-lucide="code-2" class="w-4 h-4 text-slate-500"></i> 代码 / 算法与数理</div>
+                </button>
+                <button type="button" data-input="topic" class="handout-input-btn px-3 py-2.5 rounded-xl border text-left text-xs font-semibold transition-all bg-white border-slate-200 text-slate-700 hover:border-slate-300">
+                  <div class="flex items-center gap-1.5"><i data-lucide="lightbulb" class="w-4 h-4 text-slate-500"></i> 零基础主题 / 提纲</div>
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <p class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2.5">2. 你想产出什么形式的学习讲义？</p>
+              <div id="handoutOutputGroup" class="grid grid-cols-2 gap-2">
+                <button type="button" data-output="notes" class="handout-output-btn px-3 py-2.5 rounded-xl border text-left text-xs font-semibold transition-all bg-indigo-50 border-indigo-500 text-indigo-900">
+                  <div class="flex items-center gap-1.5"><i data-lucide="book-open-check" class="w-4 h-4 text-indigo-600"></i> 严谨结构化讲义</div>
+                </button>
+                <button type="button" data-output="slides" class="handout-output-btn px-3 py-2.5 rounded-xl border text-left text-xs font-semibold transition-all bg-white border-slate-200 text-slate-700 hover:border-slate-300">
+                  <div class="flex items-center gap-1.5"><i data-lucide="presentation" class="w-4 h-4 text-slate-500"></i> 教学 / 汇报 PPT</div>
+                </button>
+                <button type="button" data-output="quiz" class="handout-output-btn px-3 py-2.5 rounded-xl border text-left text-xs font-semibold transition-all bg-white border-slate-200 text-slate-700 hover:border-slate-300">
+                  <div class="flex items-center gap-1.5"><i data-lucide="layers" class="w-4 h-4 text-slate-500"></i> 抽认卡与自测题库</div>
+                </button>
+                <button type="button" data-output="workbook" class="handout-output-btn px-3 py-2.5 rounded-xl border text-left text-xs font-semibold transition-all bg-white border-slate-200 text-slate-700 hover:border-slate-300">
+                  <div class="flex items-center gap-1.5"><i data-lucide="terminal" class="w-4 h-4 text-slate-500"></i> 例题解析与实操手册</div>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div id="handoutResultBox" class="lg:col-span-7 bg-slate-50 rounded-2xl p-5 border border-slate-200 flex flex-col justify-between space-y-4">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Chart + Tier Matrix -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-5 bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col">
+          <div class="mb-3">
+            <h3 class="font-bold text-slate-900">2026年11月旗舰与主力模型 API 输出价格对比（$/百万Token）</h3>
+            <p class="text-xs text-slate-500 mt-0.5">Gemini 4 元素系列 vs Claude 5.5 / Fable 5.2（2026.11.19 实测数据）</p>
+          </div>
+          <div class="relative h-72 w-full">
+            <canvas id="modelScoreChart"></canvas>
+          </div>
+          <div class="mt-3 pt-3 border-t border-slate-100 text-xs text-slate-500 flex items-center justify-between">
+            <span>来源：Toloka AI 2026.11.19 对比</span>
+            <a href="https://toloka.ai/blog/gemini-vs-claude/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline">查看完整定价 ↗</a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 bg-white rounded-2xl p-5 border border-slate-200 shadow-sm overflow-hidden">
+          <div class="flex items-center justify-between mb-3">
+            <div>
+              <h3 class="font-bold text-slate-900">主流大模型专项能力与讲义适配对照表</h3>
+              <p class="text-xs text-slate-500 mt-0.5">按场景选型，避免用单一模型硬扛所有任务</p>
+            </div>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+              <thead>
+                <tr class="border-b border-slate-200 text-slate-500 text-xs">
+                  <th class="py-2.5 pr-3 font-semibold">模型 / 梯队</th>
+                  <th class="py-2.5 px-3 font-semibold">核心专项长板</th>
+                  <th class="py-2.5 pl-3 font-semibold">最适合的讲义任务</th>
+                </tr>
+              </thead>
+              <tbody id="modelTableBody" class="divide-y divide-slate-100"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Specialized Study Handout & PPT Tools -->
+      <div>
+        <h3 class="text-lg font-bold text-slate-900 mb-3">专项学习讲义与演示工具对比（2026 实测）</h3>
+        <div id="handoutToolsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 3: 政策与监管雷达 ==================== -->
+    <section id="tab-policy" class="tab-panel space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-emerald-600">Global AI Policy Radar</span>
+          <h2 class="text-2xl font-extrabold text-slate-900 mt-0.5">AI 政策汇报与全球合规雷达</h2>
+          <p class="text-sm text-slate-600 mt-1">追踪中国、欧盟、美国三大监管板块的立法节奏、备案规模与企业/个人应对要点。</p>
+        </div>
+        <div id="policyFilterGroup" class="flex flex-wrap gap-1.5">
+          <button type="button" data-region="all" class="policy-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 text-white">全部地区</button>
+          <button type="button" data-region="cn" class="policy-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white border border-slate-200 text-slate-600 hover:bg-slate-50">中国</button>
+          <button type="button" data-region="eu" class="policy-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white border border-slate-200 text-slate-600 hover:bg-slate-50">欧盟</button>
+          <button type="button" data-region="us" class="policy-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white border border-slate-200 text-slate-600 hover:bg-slate-50">美国</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-5 bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+          <h3 class="font-bold text-slate-900">中国生成式 AI 服务备案与登记增长</h3>
+          <p class="text-xs text-slate-500 mt-0.5 mb-3">国家网信办 2026年4月30日 vs 2026年8月31日 累计数据</p>
+          <div class="relative h-72 w-full">
+            <canvas id="policyFilingChart"></canvas>
+          </div>
+          <div class="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+            <span>7–8月新增124款备案（含7款手机端侧）</span>
+            <a href="https://www.cac.gov.cn/2026-09/14/c_1791136833136332.htm" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline">网信办公告 ↗</a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 space-y-4" id="policyCardsContainer"></div>
+      </div>
+
+      <!-- Compliance Comparison Table -->
+      <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+        <h3 class="font-bold text-slate-900 mb-3">中欧美 AI 监管核心机制横向对照</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs sm:text-sm">
+            <thead>
+              <tr class="border-b border-slate-200 text-slate-500 text-xs">
+                <th class="py-2.5 pr-4 font-semibold">司法辖区</th>
+                <th class="py-2.5 px-4 font-semibold">核心监管模式</th>
+                <th class="py-2.5 px-4 font-semibold">关键合规门槛 / 处罚</th>
+                <th class="py-2.5 pl-4 font-semibold">对从业者与企业的启示</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr>
+                <td class="py-3 pr-4 font-bold text-slate-900 whitespace-nowrap">中国</td>
+                <td class="py-3 px-4 text-slate-700">算法备案 + 生成式AI服务备案/登记 + 内容标注 + “人工智能+”场景共创</td>
+                <td class="py-3 px-4 text-slate-700">具有舆论属性或社会动员能力的服务须履行备案/登记，并显著公示备案号与模型名称</td>
+                <td class="py-3 pl-4 text-slate-700">优先接入已备案基座模型与国产异构算力，关注央企场景开放与端侧合规落地 <a href="https://www.cac.gov.cn/2026-09/14/c_1791136833136332.htm" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline">[来源]</a></td>
+              </tr>
+              <tr>
+                <td class="py-3 pr-4 font-bold text-slate-900 whitespace-nowrap">欧盟</td>
+                <td class="py-3 px-4 text-slate-700">《欧盟人工智能法案》风险分级立法，区分提供商与部署方义务</td>
+                <td class="py-3 px-4 text-slate-700">禁止类违规最高罚 3,500万欧元或全球年营收 7%（取较高者）；基础要求已生效</td>
+                <td class="py-3 pl-4 text-slate-700">出海产品须提前开展 AI 资产盘点、索取供应商合规文件并嵌入人类监督机制 <a href="https://www.foley.com/zh/insights/publications/2026/07/compliance-and-enforcement-in-global-ai-regulation-eu-ai-act-risks-and-international-regulatory-challenges/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline">[来源]</a></td>
+              </tr>
+              <tr>
+                <td class="py-3 pr-4 font-bold text-slate-900 whitespace-nowrap">美国</td>
+                <td class="py-3 px-4 text-slate-700">自愿性框架为主 + 《人工智能权利法案蓝图》五项原则指引</td>
+                <td class="py-3 px-4 text-slate-700">聚焦安全有效系统、反算法歧视、数据隐私保护与问责机制</td>
+                <td class="py-3 pl-4 text-slate-700">重视产品透明度与可解释性测试，避免单一合规方案套用全球市场 <a href="https://cn.weforum.org/stories/emerging-technologies/understanding-the-ai-bill-of-rights-protection" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline">[来源]</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 4: 前沿科技与科学应用 ==================== -->
+    <section id="tab-frontier" class="tab-panel space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-cyan-600">Frontier Tech & AI for Science</span>
+          <h2 class="text-2xl font-extrabold text-slate-900 mt-0.5">AI 发展前沿科技与科学技术融合应用</h2>
+          <p class="text-sm text-slate-600 mt-1">从 AAAI 2026 到微软研究院前沿观察：看见 AI 如何重塑基础科学、物理机器人、生命医学与底层算力。</p>
+        </div>
+        <div id="frontierFilterGroup" class="flex flex-wrap gap-1.5">
+          <button type="button" data-cat="all" class="frontier-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 text-white">全部前沿</button>
+          <button type="button" data-cat="science" class="frontier-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white border border-slate-200 text-slate-600 hover:bg-slate-50">AI for Science</button>
+          <button type="button" data-cat="embodied" class="frontier-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white border border-slate-200 text-slate-600 hover:bg-slate-50">空间与具身智能</button>
+          <button type="button" data-cat="bio" class="frontier-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white border border-slate-200 text-slate-600 hover:bg-slate-50">生物与医疗</button>
+          <button type="button" data-cat="infra" class="frontier-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white border border-slate-200 text-slate-600 hover:bg-slate-50">算力与智能体系统</button>
+        </div>
+      </div>
+
+      <div id="frontierCardsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+    </section>
+
+    <!-- ==================== TAB 5: AI应用深度剖析 ==================== -->
+    <section id="tab-apps" class="tab-panel space-y-6">
+      <div>
+        <span class="text-xs font-semibold uppercase tracking-wider text-amber-600">AI Application Deep-Dive</span>
+        <h2 class="text-2xl font-extrabold text-slate-900 mt-0.5">AI 应用落地剖析：穿透热潮，看清真实 ROI</h2>
+        <p class="text-sm text-slate-600 mt-1">结合 MIT、麦肯锡、世界经济论坛与 2026 人工智能+大会一线实证，拆解落地瓶颈与高价值场景。</p>
+      </div>
+
+      <!-- Paradox / J-Curve Callout -->
+      <div class="bg-gradient-to-br from-slate-900 to-indigo-950 rounded-2xl p-6 text-white shadow-md">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
+          <div class="lg:col-span-2 space-y-3">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-400/20 text-amber-200 text-xs font-semibold">
+              <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i> 2026 核心产业实证：AI 应用“J型曲线”
+            </span>
+            <h3 class="text-xl font-bold">为什么多数机构还没看到量化回报，先行者却已拉开代差？</h3>
+            <p class="text-sm text-slate-200 leading-relaxed">
+              麻省理工学院斯隆商学院研究显示，企业在引入 AI 初期往往会经历短期绩效下滑，源于旧工作流与新工具错配；MIT 媒体实验室指出 95% 的机构尚未看到可量化回报，麦肯锡亦表明多数企业仍停留在试点期。但长期来看，完成数据基建、工作流重塑与人类校准闭环的先行企业，将在生产效率与市场份额上显著领先。
+            </p>
+            <a href="https://cn.weforum.org/stories/artificial-intelligence/ai-paradoxes-in-2026" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs font-semibold text-cyan-300 hover:underline">
+              阅读世界经济论坛《2026年值得关注的五大人工智能悖论》 <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+          <div class="bg-white/10 rounded-xl p-4 border border-white/15 space-y-3">
+            <div class="text-xs font-semibold text-cyan-200 uppercase">落地避坑三原则</div>
+            <ul class="text-xs text-slate-100 space-y-2">
+              <li class="flex items-start gap-2"><span class="text-cyan-300 font-bold">01</span> 拒绝“工作废料”：用来源溯源与人类评估校准智能体输出。</li>
+              <li class="flex items-start gap-2"><span class="text-cyan-300 font-bold">02</span> 重构而非嫁接：把 AI 嵌入端到端业务流，而非仅当问答框。</li>
+              <li class="flex items-start gap-2"><span class="text-cyan-300 font-bold">03</span> 异构降本增效：针对推理任务匹配不同芯片与轻量化开源模型。</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vertical Application Cards -->
+      <div id="appVerticalsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+    </section>
+
+    <!-- ==================== TAB 6: 就业趋势与专业报考路径 ==================== -->
+    <section id="tab-career" class="tab-panel space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-rose-600">Future Pathway & Major Advisor</span>
+          <h2 class="text-2xl font-extrabold text-slate-900 mt-0.5">AI 就业趋势、未来行业展望与专业报考推荐</h2>
+          <p class="text-sm text-slate-600 mt-1">基于世界经济论坛《未来就业报告》与教育部《2026年普通高等学校本科专业目录》，把时代趋势落到报考与职业选择。</p>
+        </div>
+      </div>
+
+      <!-- Charts Row: WEF Employment + Skills -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-6 bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+          <h3 class="font-bold text-slate-900">2025–2030 全球就业岗位变动预测（亿个）</h3>
+          <p class="text-xs text-slate-500 mt-0.5 mb-3">世界经济论坛基于全球 1,000+ 领先企业调研</p>
+          <div class="relative h-64 w-full">
+            <canvas id="wefJobsChart"></canvas>
+          </div>
+          <div class="mt-3 pt-3 border-t border-slate-100 text-xs text-slate-500 flex items-center justify-between">
+            <span>并非全面替代，而是结构性大洗牌（净增7,800万）</span>
+            <a href="https://cn.weforum.org/stories/artificial-intelligence/ai-paradoxes-in-2026" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline">WEF 报告 ↗</a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6 bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <h3 class="font-bold text-slate-900">雇主人才需求与青年入门岗位重构信号</h3>
+            <p class="text-xs text-slate-500 mt-0.5 mb-4">AI 越普及，“人类独特技能 + 驾驭 AI 系统”越稀缺</p>
+            <div class="space-y-3.5">
+              <div>
+                <div class="flex justify-between text-xs font-semibold mb-1">
+                  <span class="text-slate-700">视“分析性思维”为核心不可或缺技能的企业</span>
+                  <span class="text-indigo-700">70%</span>
+                </div>
+                <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-indigo-600 rounded-full" style="width: 70%"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs font-semibold mb-1">
+                  <span class="text-slate-700">计划招聘具备 AI 专项技能人才的企业（约三分之二）</span>
+                  <span class="text-cyan-700">66.7%</span>
+                </div>
+                <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-cyan-500 rounded-full" style="width: 66.7%"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs font-semibold mb-1">
+                  <span class="text-slate-700">把国内高校毕业生作为主渠道人才来源的上海 AI 企业</span>
+                  <span class="text-emerald-700">75.6%</span>
+                </div>
+                <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-emerald-500 rounded-full" style="width: 75.6%"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs font-semibold mb-1">
+                  <span class="text-slate-700">未来 5 年面临迭代的现有岗位技能比例 / 预计自动化缩减人力企业</span>
+                  <span class="text-amber-700">~40%</span>
+                </div>
+                <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-amber-500 rounded-full" style="width: 40%"></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 text-xs text-slate-600 flex flex-wrap items-center justify-between gap-2">
+            <span>警示：AI 智能体正侵蚀初级执行岗，青年须尽早积累实战项目与判断力。</span>
+            <a href="https://reports.weforum.org/docs/WEF_Artificial_Intelligence_and_the_Future_of_Entry_Level_Work_2026.pdf" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline">WEF 2026 入门岗位报告 ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Major & Future Career Path Matcher -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="bg-slate-900 px-6 py-4 text-white flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-2">
+            <i data-lucide="compass" class="w-5 h-5 text-emerald-400"></i>
+            <h3 class="font-bold text-base">交互式「2026 专业报考与未来行业路径匹配器」</h3>
+          </div>
+          <span class="text-xs text-slate-300">对接教育部 2026 本科专业目录（新增38种 · 调整比例首破10%）</span>
+        </div>
+
+        <div class="p-6 space-y-5">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">1. 选择你的学科优势与兴趣方向</p>
+              <div id="majorTrackGroup" class="flex flex-wrap gap-2">
+                <button type="button" data-track="all" class="major-track-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-900 text-white">全部高潜赛道</button>
+                <button type="button" data-track="hardware" class="major-track-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200">数理硬核与智能硬件</button>
+                <button type="button" data-track="bio" class="major-track-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200">生命科学 / 脑机交叉</button>
+                <button type="button" data-track="business" class="major-track-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200">商科金融 / 文社交叉</button>
+                <button type="button" data-track="industry" class="major-track-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200">实体产业与低空/能源</button>
+              </div>
+            </div>
+            <div>
+              <p class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">2. 选择你的职业发展倾向</p>
+              <div id="careerGoalGroup" class="flex flex-wrap gap-2">
+                <button type="button" data-goal="all" class="career-goal-btn px-3 py-2 rounded-xl text-xs font-semibold bg-indigo-600 text-white">不限路径</button>
+                <button type="button" data-goal="research" class="career-goal-btn px-3 py-2 rounded-xl text-xs font-semibold bg-indigo-50 text-indigo-800 hover:bg-indigo-100">前沿科研与深造</button>
+                <button type="button" data-goal="industry_fast" class="career-goal-btn px-3 py-2 rounded-xl text-xs font-semibold bg-indigo-50 text-indigo-800 hover:bg-indigo-100">产业落地与高薪工程</button>
+                <button type="button" data-goal="steady" class="career-goal-btn px-3 py-2 rounded-xl text-xs font-semibold bg-indigo-50 text-indigo-800 hover:bg-indigo-100">国家战略与实体升级</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="majorCardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-2"></div>
+
+          <!-- Strategic Note on University Path Selection -->
+          <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 text-xs sm:text-sm text-slate-700 leading-relaxed">
+            <span class="font-bold text-slate-900">报考择校核心逻辑（以沪京名校为例）：</span>
+            同一“AI字头”专业在不同高校的培养路径差异极大——如<span class="font-semibold">复旦大学</span>依托文社理工医全学科集群，打通数学、统计、生命科学与社会计算；<span class="font-semibold">同济大学</span>深耕垂直工业场景与未来机器人/工程互联网；<span class="font-semibold">北航</span>则联动机械、控制、AI、生物医学与航空航天 5 个一级学科并与华为、大疆、航天科工共建实训基地。报考前务必查清目标院校的依托学院与核心课程，切忌只看专业名称。
+            <a href="https://www.ecnu.edu.cn/info/1426/72569.htm" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline ml-1">[华东师大转引解读 ↗]</a>
+            <a href="https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202605/t20260520_4659034.html" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline ml-1">[北京市政府门户网 ↗]</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Future Industry Trend Summary Table -->
+      <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+        <h3 class="font-bold text-slate-900 mb-3">未来 5 年行业就业趋势与个人破局路径</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs sm:text-sm">
+            <thead>
+              <tr class="border-b border-slate-200 text-slate-500 text-xs">
+                <th class="py-2.5 pr-3 font-semibold">行业赛道</th>
+                <th class="py-2.5 px-3 font-semibold">趋势方向</th>
+                <th class="py-2.5 px-3 font-semibold">高增长核心岗位 / 能力</th>
+                <th class="py-2.5 pl-3 font-semibold">现实行动建议</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <tr>
+                <td class="py-3 pr-3 font-bold text-slate-900">AI 系统与智能体工程</td>
+                <td class="py-3 px-3"><span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-semibold text-xs">高速扩张</span></td>
+                <td class="py-3 px-3 text-slate-700">上下文工程、智能体评估与监管、异构算力推理优化、开源模型微调</td>
+                <td class="py-3 pl-3 text-slate-700">掌握 Python + DeepSeek/Qwen 本地部署与 Agent 工作流搭建</td>
+              </tr>
+              <tr>
+                <td class="py-3 pr-3 font-bold text-slate-900">具身智能与高端制造</td>
+                <td class="py-3 px-3"><span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-semibold text-xs">战略急需</span></td>
+                <td class="py-3 px-3 text-slate-700">空间智能算法、自主无人系统、半导体工艺装备、工业场景机器人集成</td>
+                <td class="py-3 pl-3 text-slate-700">走“机械/控制 + AI”复合路线，优先参与校企联合实验室项目</td>
+              </tr>
+              <tr>
+                <td class="py-3 pr-3 font-bold text-slate-900">AI + 生命科学与医疗</td>
+                <td class="py-3 px-3"><span class="px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 font-semibold text-xs">长期红利</span></td>
+                <td class="py-3 px-3 text-slate-700">生物制造、蛋白质/药物计算设计、多模态医学影像、护理与精准医疗协同</td>
+                <td class="py-3 pl-3 text-slate-700">夯实生物/医学基础并辅修数据科学，切忌纯理论脱离实验场景</td>
+              </tr>
+              <tr>
+                <td class="py-3 pr-3 font-bold text-slate-900">一线服务与人文创意</td>
+                <td class="py-3 px-3"><span class="px-2 py-0.5 rounded-full bg-cyan-50 text-cyan-700 font-semibold text-xs">韧性增长</span></td>
+                <td class="py-3 px-3 text-slate-700">教育教学设计、社会工作、高可信原创内容策划、商业AI转型顾问</td>
+                <td class="py-3 pl-3 text-slate-700">在“AI糟粕”泛滥期打造真实人际信任、审美判断与行业深耕壁垒</td>
+              </tr>
+              <tr>
+                <td class="py-3 pr-3 font-bold text-slate-900">标准化初级文职与基础编码</td>
+                <td class="py-3 px-3"><span class="px-2 py-0.5 rounded-full bg-rose-50 text-rose-700 font-semibold text-xs">收缩重构</span></td>
+                <td class="py-3 px-3 text-slate-700">纯重复录入、模板化初稿撰写、无业务理解的初级代码搬运</td>
+                <td class="py-3 pl-3 text-slate-700">向“需求定义 + AI审核校准 + 跨部门协同决策”升级</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 mt-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
+      <div>智潮日报 · AI Daily — 所有数据与政策均附原始权威链接，支持本地离线收藏与笔记导出。</div>
+      <div>本期更新：2026年11月27日</div>
+    </div>
+  </footer>
+
+  <!-- Global Search Modal -->
+  <div id="searchModal" class="fixed inset-0 z-50 hidden bg-slate-900/50 backdrop-blur-sm flex items-start justify-center pt-16 px-4">
+    <div class="bg-white w-full max-w-xl rounded-2xl shadow-2xl border border-slate-200 overflow-hidden">
+      <div class="flex items-center gap-3 px-4 py-3 border-b border-slate-200">
+        <i data-lucide="search" class="w-5 h-5 text-slate-400"></i>
+        <input id="globalSearchInput" type="text" placeholder="搜索模型、讲义工具、政策、前沿科技或2026新增专业..." class="w-full text-sm text-slate-900 placeholder-slate-400 focus:outline-none" />
+        <button id="closeSearchBtn" type="button" class="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <div id="searchResultsList" class="max-h-80 overflow-y-auto custom-scroll p-3 space-y-2 text-sm"></div>
+    </div>
+  </div>
+
+  <!-- Bookmarks & Personal Study Notes Drawer -->
+  <div id="bookmarkDrawer" class="fixed inset-0 z-50 hidden">
+    <div id="drawerBackdrop" class="absolute inset-0 bg-slate-900/40 backdrop-blur-xs"></div>
+    <aside class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white shadow-2xl border-l border-slate-200 flex flex-col">
+      <div class="px-5 py-4 border-b border-slate-200 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i data-lucide="bookmark-check" class="w-5 h-5 text-indigo-600"></i>
+          <h3 class="font-bold text-slate-900">我的收藏与学习路径笔记</h3>
+        </div>
+        <button id="closeDrawerBtn" type="button" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <div class="flex-1 overflow-y-auto custom-scroll p-5 space-y-6">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500">已收藏情报条目</h4>
+            <button id="clearBookmarksBtn" type="button" class="text-xs text-rose-600 hover:underline">清空收藏</button>
+          </div>
+          <div id="bookmarksList" class="space-y-2"></div>
+        </div>
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500">每日讲义灵感 / 报考思考笔记</h4>
+            <button id="exportNotesBtn" type="button" class="inline-flex items-center gap-1 text-xs font-semibold text-indigo-600 hover:underline">
+              <i data-lucide="download" class="w-3.5 h-3.5"></i> 导出 Markdown
+            </button>
+          </div>
+          <textarea id="personalNotesInput" rows="7" placeholder="记录今天想做进学习讲义的知识点、心仪专业对比或职业技能打卡计划（自动保存在本地浏览器）..." class="w-full rounded-xl border border-slate-200 p-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- PWA Install Guide Modal -->
+  <div id="installModal" class="fixed inset-0 z-50 hidden bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl border border-slate-200 overflow-hidden">
+      <div class="px-5 py-4 bg-slate-900 text-white flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <img src="./icons/icon-192.png" alt="智潮日报图标" class="w-7 h-7 rounded-lg" />
+          <h3 class="font-bold text-sm">将「智潮日报」安装到桌面</h3>
+        </div>
+        <button id="closeInstallModalBtn" type="button" class="p-1 rounded-lg text-slate-300 hover:text-white hover:bg-white/10">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+      <div class="p-5 space-y-4 text-xs sm:text-sm text-slate-700">
+        <p class="text-slate-600">安装后即可像原生 App 一样全屏打开，并支持离线阅读与每日自动同步最新数据：</p>
+        <div class="bg-slate-50 rounded-xl p-3.5 border border-slate-200 space-y-1.5">
+          <div class="font-bold text-slate-900">iPhone / iPad（Safari 浏览器）</div>
+          <p class="text-xs text-slate-600">点击底部中央「分享」图标（方框带向上箭头） → 向上滑动 → 点击「添加到主屏幕」→ 右上角「添加」。</p>
+        </div>
+        <div class="bg-slate-50 rounded-xl p-3.5 border border-slate-200 space-y-1.5">
+          <div class="font-bold text-slate-900">安卓手机（Chrome / Edge 浏览器）</div>
+          <p class="text-xs text-slate-600">点击右上角菜单（三个点）→ 选择「安装应用」或「添加到主屏幕」。</p>
+        </div>
+        <button id="confirmInstallModalBtn" type="button" class="w-full py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm transition-colors">我知道了</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 hidden px-4 py-2.5 rounded-xl bg-slate-900 text-white text-xs font-semibold shadow-lg flex items-center gap-2">
+    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+    <span id="toastMessage">已复制</span>
+  </div>
+
+  <script>
+    // ==================== GROUNDED DATA REPOSITORY ====================
+    const DAILY_DIGESTS = {
+      today: [
+        {
+          id: 'd1',
+          tag: '11月模型大洗牌',
+          color: 'indigo',
+          tab: 'capability',
+          title: '2026年11月26款新模型密集发布：GPT-6.2、Gemini 4、Claude Fable 5.2、Qwen4-Max、GLM-5.4 同台竞技',
+          summary: '11月9日 Anthropic 推出 Claude Fable 5.2；11月10–18日 Google 上线 Gemini 4 Carbon/Hydrogen/Neon 元素全系；11月16–23日 Qwen4-Max、GPT-6.2 Astra/Sol、GLM-5.4 接连落地。',
+          sourceTitle: 'BenchLM 2026年11月发布追踪',
+          sourceUrl: 'https://benchlm.ai/model-updates/releases/november-2026'
+        },
+        {
+          id: 'd2',
+          tag: '重磅就业政策',
+          color: 'emerald',
+          tab: 'policy',
+          title: '国务院办公厅印发《就业友好型AI发展意见》：稳慎把握劳动密集型行业替代节奏',
+          summary: '10月23日国办发文、11月引发全社会热议：明确要求稳慎把握AI在劳动密集型行业应用的范围与节奏，同时2026人工智能+大会（11月海淀）启动央企AI场景共创。',
+          sourceTitle: '中国新闻周刊 2026.11.09',
+          sourceUrl: 'https://www.chinanews.com.cn/sh/2026/11-09/10728824.shtml'
+        },
+        {
+          id: 'd3',
+          tag: '11月前沿突破',
+          color: 'cyan',
+          tab: 'frontier',
+          title: '美团1.6万亿参数 LongCat-2.5 全程国产算力训练；上海冲刺 8,000 台人形机器人进厂',
+          summary: '11月3日美团发布面向长程智能体的原生多模态 LongCat-2.5；11月20–22日首届虹桥国际科技周亮相，披露中国日均Token达140万亿、上海智算超20万P。',
+          sourceTitle: '钛媒体 & 新浪财经 2026.11',
+          sourceUrl: 'https://www.tmtpost.com/index.php/8197131.html'
+        },
+        {
+          id: 'd4',
+          tag: 'AI应用冷思考',
+          color: 'amber',
+          tab: 'apps',
+          title: '2026上半年 AI 短剧暴增超 22.19 万部，但编剧单部收入从 5 万压缩至 5000 元',
+          summary: '《中国新闻周刊》11月一线调研显示，部分内容行业正因AI陷入“堆量流水线”；叠加MIT指出95%机构未见量化回报，真正护城河在于重构工作流与高可信原创。',
+          sourceTitle: '中国新闻网 2026.11.09',
+          sourceUrl: 'https://www.chinanews.com.cn/sh/2026/11-09/10728824.shtml'
+        },
+        {
+          id: 'd5',
+          tag: '专业报考推荐',
+          color: 'rose',
+          tab: 'career',
+          title: '2026本科专业调整首破10%：北航、哈工大等9校首批增设“具身智能”与脑机科学',
+          summary: '教育部2026本科目录新增38种专业，首次在交叉学科门类纳入具身智能、脑机科学与技术、未来机器人等方向，直指未来十年实体与科研高薪赛道。',
+          sourceTitle: '教育部2026本科专业目录',
+          sourceUrl: 'https://www.cernet.edu.cn/xxh/focus/zc/202604/t20260430_2732185.shtml'
+        },
+        {
+          id: 'd6',
+          tag: '职场生存法则',
+          color: 'violet',
+          tab: 'career',
+          title: '从“做作业”转向“批作业”：WEF 警示初级岗位重塑，39%核心技能2030年前迭代',
+          summary: '面对AI从相对高端岗位切入替代的新特征，未来入门级员工的核心价值不再是单纯生产初稿，而是具备领域判断力、敢于核查并推翻错误AI结论的“评估者”。',
+          sourceTitle: '世界经济论坛 2026深度分析',
+          sourceUrl: 'https://cn.weforum.org/stories/artificial-intelligence/ai-leadership-crisis-gen-z'
+        }
+      ],
+      study: [
+        {
+          id: 's1',
+          tag: '讲义工具链',
+          color: 'indigo',
+          tab: 'capability',
+          title: 'NotebookLM vs Gamma 3.0 vs SlideMaster：不同备课阶段如何选？',
+          summary: '消化30页论文提炼带溯源摘要与抽认卡首选 NotebookLM；从零快速搭叙事感PPT首选 Gamma 3.0；翻新已有60页旧教材与录课首选 SlideMaster。',
+          sourceTitle: '2026 AI简报工具实测',
+          sourceUrl: 'https://slidemaster.tw/guides/ai-presentation-tools-comparison'
+        },
+        {
+          id: 's2',
+          tag: '科研前沿',
+          color: 'cyan',
+          tab: 'frontier',
+          title: '空间智能与“虚拟患者”数字孪生：AI与物理、生命科学深度融合',
+          summary: '微软研究院2026前沿观察指出，可扩展3D数据集与具身交互正在推动通用机器人进入湿实验室，生成式AI也在通过“生命语言”设计蛋白质与模拟治疗方案。',
+          sourceTitle: '微软研究院 2026前沿观察',
+          sourceUrl: 'https://www.microsoft.com/en-us/research/articles/whats-next-in-ai/'
+        },
+        {
+          id: 's3',
+          tag: '学习警示',
+          color: 'amber',
+          tab: 'apps',
+          title: '警惕“认知外包”：47%的95后每周使用AI，近半数担忧批判性思维退化',
+          summary: 'MIT研究提示过度依赖AI可能削弱记忆保留与原创思维；使用AI生成学习指南后，务必对照原始资料核查并合上资料独立作答。',
+          sourceTitle: 'Coursebox & WEF 2026',
+          sourceUrl: 'https://www.coursebox.ai/zh/blog/ai-study-guide-maker'
+        }
+      ],
+      career: [
+        {
+          id: 'c1',
+          tag: '志愿策略',
+          color: 'rose',
+          tab: 'career',
+          title: '同样是“AI字头”专业，复旦、同济、北航的培养路径完全不同',
+          summary: '复旦走全学科集群交叉（数学/生命科学/社会计算），同济深耕垂直工业场景与无人系统，北航联动5个一级学科与华为、大疆共建实训基地。',
+          sourceTitle: '填志愿前读懂AI字头专业',
+          sourceUrl: 'https://www.ecnu.edu.cn/info/1426/72569.htm'
+        },
+        {
+          id: 'c2',
+          tag: '出海合规岗位',
+          color: 'emerald',
+          tab: 'policy',
+          title: '《欧盟AI法案》全面落地催生“AI合规治理与审计”新需求',
+          summary: '欧盟法案对违规企业最高处以全球年营收7%罚款，并明确区分提供商与部署方义务，懂技术又懂国际合规的复合人才需求攀升。',
+          sourceTitle: 'Foley 2026全球AI合规分析',
+          sourceUrl: 'https://www.foley.com/zh/insights/publications/2026/07/compliance-and-enforcement-in-global-ai-regulation-eu-ai-act-risks-and-international-regulatory-challenges/'
+        },
+        {
+          id: 'c3',
+          tag: '产业大势',
+          color: 'violet',
+          tab: 'apps',
+          title: '国产异构推理与央企AI场景开放：实体经济成为AI人才新蓄水池',
+          summary: '中国电子、中汽科技、国网经济研究院等央企联合智谱、摩尔线程等企业开放一线工业课题，推动AI从纯互联网向能源、制造、交通渗透。',
+          sourceTitle: '2026人工智能+大会报道',
+          sourceUrl: 'https://www.ncsti.gov.cn/kjdt/scyq/zgckxc/zgcdt/202611/t20261104_261142.html'
+        }
+      ]
+    };
+
+    const MODELS_DATA = [
+      { name: 'Claude Fable 5.2 / Opus 5.5', tier: '2026.11 旗舰 · 1M上下文', specialty: 'Fable 5.2（11月9日发布，$8/$40）领跑复杂推理与长程Agent；Opus 5.5（$4/$20）兼顾128K超长输出与自适应思考', handoutFit: '万字学术文献拆解、严谨逻辑校对、高阶课程讲义与长篇教案', url: 'https://toloka.ai/blog/gemini-vs-claude/' },
+      { name: 'GPT-6.2 Astra / Sol', tier: '2026.11.17 最新上线', specialty: 'OpenAI 11月旗舰双变体（同步推出 GPT-Live-1.1 API），通用推理、多模态交互与复杂任务闭环能力全面升级', handoutFit: '零基础知识体系搭建、跨学科教学案例与互动式学习手册', url: 'https://benchlm.ai/model-updates/releases/november-2026' },
+      { name: 'Gemini 4 Carbon / Neon / Hydrogen', tier: '2026.11 元素全系', specialty: 'Carbon（11月10日GA，限时$2/$10）专攻代码与复杂任务；Neon（11月18日，$3/$15）主攻深度分析；Hydrogen（$1.5/$7.5）取代Flash', handoutFit: '音视频网课/录屏解析、多论文图文融合梳理与高性价比日常备课', url: 'https://toloka.ai/blog/gemini-vs-claude/' },
+      { name: 'Qwen4-Max / Qwen 3.8', tier: '2026.11.16 阿里旗舰', specialty: 'Qwen4-Max（2.4T参数激活71B）支持联网搜索、工具调用与结构化输出；Qwen3.8-27B 适合企业与个人本地 PoC', handoutFit: '中文专业讲义润色、双语翻译、兼容 OpenAI/Anthropic API 的知识库搭建', url: 'https://help.aliyun.com/zh/model-studio/newly-released-models' },
+      { name: 'GLM-5.4 / GLM-5.3-Flash', tier: '2026.11.23 智谱上新', specialty: 'Z.AI 11月23日发布最新 GLM-5.4；GLM-5.3 与 MIT 授权多模态 GLM-5.3-Flash 开放权重，中文合规与私有部署标杆', handoutFit: '中文政策/行业研报提炼、多模态图文讲义与机构内训合规部署', url: 'https://benchlm.ai/model-updates/releases/november-2026' },
+      { name: 'DeepSeek V4.1-Flash.1-Flash-1017', tier: '2026.11 MIT开源主力', specialty: '新架构 MIT 开放权重、原生图文输入；配套 DeepSeek「全家桶API」（搜索/文件读取/OCR/语音一次接入），成本极具优势', handoutFit: '编程实操讲义、数学推导拆解、OCR 扫描教材转电子讲义与批量题库', url: 'https://www.largitdata.com/blog_detail/20240420' },
+      { name: 'Kimi K3.1 Pro / LongCat-2.5', tier: '2026.11 超大参数新锐', specialty: 'Kimi K3.1 Pro（2.8T/104B激活）11月已公开权重；美团 LongCat-2.5（1.6T原生多模态）全程国产算力训练，专攻长程智能体', handoutFit: '超长中文资料一次吞吐、中文内容型 PPT 大纲与复杂自动化备课流', url: 'https://www.largitdata.com/blog_detail/20240420' }
+    ];
+
+    const HANDOUT_TOOLS = [
+      {
+        name: 'NotebookLM (Gemini Notebook)',
+        badge: '资料溯源神器',
+        bestFor: '把论文、PDF、网页、YouTube 视频整理成带来源链接的摘要、FAQ、抽认卡与测验。',
+        limit: '设计自由度较低，不能导入旧 PPT 保留原排版翻新。',
+        url: 'https://slidemaster.tw/guides/ai-presentation-tools-comparison'
+      },
+      {
+        name: 'Gamma 3.0 (含 Gamma Agent)',
+        badge: '零基础成稿快',
+        bestFor: '输入主题或大纲即可快速产出叙事感强、排版美观的演示讲义，支持对话式修改设计。',
+        limit: '主打从零生成，不适合直接翻新已有的60页旧教材。',
+        url: 'https://slidemaster.tw/guides/ai-presentation-tools-comparison'
+      },
+      {
+        name: 'SlideMaster',
+        badge: '讲师备课专精',
+        bestFor: '专为讲师打造，支持旧教材翻新并一体化产出教学演示与教学视频。',
+        limit: '偏重专业教学备课流程，轻量临时汇报略重。',
+        url: 'https://slidemaster.tw/guides/ai-presentation-tools-comparison'
+      },
+      {
+        name: 'Coursebox / Knowt',
+        badge: '复习测验闭环',
+        bestFor: '将课堂笔记、录音转为抽认卡（Knowt）或带练习题与学员支持的结构化学习指南（Coursebox）。',
+        limit: '生成测验后仍需对照原始资料核查准确度。',
+        url: 'https://www.coursebox.ai/zh/blog/ai-study-guide-maker'
+      }
+    ];
+
+    const HANDOUT_RECIPES = {
+      paper_notes: {
+        primary: 'Claude Opus 5.5 / Fable 5.2 + NotebookLM',
+        secondary: 'Gemini 4 Carbon / Neon（多篇文献横向对照）',
+        reason: 'Claude 幻觉率极低且擅长万字长文严谨拆解，配合 NotebookLM 的原文溯源引用，可确保讲义零事实偏差。',
+        steps: ['将 PDF 上传至 NotebookLM 生成带页码溯源的核心论点与 FAQ。', '将核心段落交由 Claude Opus 5.5 / Fable 5.2 按“核心概念→推导逻辑→易错辨析”重组为讲义正文。', '对照原论文图表逐项核验关键数据与公式。'],
+        prompt: '你是一名资深课程讲义设计师。请基于我提供的论文内容，输出一份结构严谨的学习讲义：1) 用通俗语言提炼3个核心问题；2) 梳理关键方法与论证链条；3) 列出5个必考/易混淆概念对照表；4) 所有数据须标注原文对应章节，严禁编造。'
+      },
+      paper_slides: {
+        primary: 'NotebookLM + Gamma 3.0',
+        secondary: 'Kimi K3.1 Pro（中文内容型PPT）',
+        reason: '先用 NotebookLM 压缩 30 页论文为 10 页精炼大纲，再导入 Gamma 3.0 快速生成叙事感强、视觉清晰的汇报型讲义。',
+        steps: ['在 NotebookLM 中输入论文并提取 8–12 页投影片逐页大纲。', '将大纲粘贴到 Gamma 3.0，使用 Gamma Agent 调整版面密度与视觉层次。', '导出后补充论文原图与核心引用链接。'],
+        prompt: '请将这份研究文献提炼为 10 页教学演示 PPT 大纲：每页包含【核心结论式标题】、【3条以内要点（每条不超过25字）】及【建议配图/图表类型】，确保整套逻辑具备清晰的故事线。'
+      },
+      paper_quiz: {
+        primary: 'NotebookLM + Coursebox / Knowt',
+        secondary: 'Claude Opus 5.5 / Fable 5.2',
+        reason: 'NotebookLM 原生支持基于来源生成抽认卡与测验，结合 Knowt/Coursebox 可直接形成“阅读→自测→查漏”复习闭环。',
+        steps: ['上传文献至 NotebookLM，一键生成概念抽认卡与基础测验。', '用 Claude 针对核心难点追加“反直觉辨析题”与简答题评分标准。', '合上资料独立作答，用错题反推讲义薄弱处。'],
+        prompt: '请根据以上文献内容，设计 10 张高频考点抽认卡（正面提问、背面精炼答案+原文依据）及 3 道能暴露理解漏洞的深度情景应用题。'
+      },
+      paper_workbook: {
+        primary: 'Claude Opus 5.5 / Fable 5.2 + DeepSeek V4.1-Flash',
+        secondary: 'GPT-6.2 Sol / Astra',
+        reason: 'Claude 负责拆解理论背景与方法论，DeepSeek V4.1-Flash 负责将论文算法转化为可运行代码示例与分步练习题。',
+        steps: ['用 Claude 提取论文中的核心算法伪代码与输入输出边界。', '用 DeepSeek V4.1-Flash 编写带逐行中文注释的 Python 复现例题与调试练习。', '整理为“原理讲解 + 代码填空 + 答案解析”实操手册。'],
+        prompt: '请将这篇论文的核心方法转化为一份实操练习手册：包含前置数学/概念回顾、简化版可运行代码例题、2道阶梯难度练习题以及常见报错排查清单。'
+      },
+      media_notes: {
+        primary: 'Gemini 4 Carbon / Neon',
+        secondary: 'NotebookLM（支持 YouTube 与音频）',
+        reason: 'Gemini 4 Carbon / Neon 拥有断层领先的音视频多模态解析能力与 200 万 token 超长上下文，可直接消化长录屏与板书画面。',
+        steps: ['将课堂录屏、音频或板书截图直接输入 Gemini 4 Carbon / Neon。', '要求按时间轴提炼知识树、板书公式与老师口头强调的重点。', '导出 Markdown 后补充个人批注与例题链接。'],
+        prompt: '请解析这段课堂音视频/录屏内容，整理成一份可直接复习的课堂讲义：1) 按主题分节并标注关键时间戳；2) 还原板书/PPT中的核心公式与图表含义；3) 单独标注讲师反复强调的高频考点。'
+      },
+      media_slides: {
+        primary: 'Gemini 4 Carbon / Neon + Gamma 3.0',
+        secondary: 'SlideMaster（如需翻新旧课件并录课）',
+        reason: 'Gemini 负责从音视频中精准萃取知识点，Gamma 3.0 负责快速重构为视觉清爽的复习 PPT。',
+        steps: ['用 Gemini 4 Carbon / Neon 提取课程核心结构与金句案例。', '将结构化大纲导入 Gamma 3.0 自动生成卡片式讲义。', '若需保留旧课件框架并产出教学视频，可切换至 SlideMaster。'],
+        prompt: '请把这段课程视频的核心内容浓缩为 12 页复习演示大纲，突出概念对比、流程步骤和实操案例，每页给出清晰的视觉排版建议。'
+      },
+      media_quiz: {
+        primary: 'Gemini 4 Carbon / Neon + Knowt',
+        secondary: 'NotebookLM',
+        reason: '先由 Gemini 跨模态捕捉口头提示与板书细节，再导入 Knowt 制作高频复习抽认卡。',
+        steps: ['用 Gemini 提取视频中的所有定义、因果关系与易错点。', '将问答对批量导入 Knowt 或 Coursebox 生成记忆卡片。', '按艾宾浩斯节奏进行自测巩固。'],
+        prompt: '请基于这段课程音视频，提取 15 个最容易在考试或实操中遗忘的知识点，按“问题 | 精炼答案 | 视频对应片段提示”的表格格式输出。'
+      },
+      media_workbook: {
+        primary: 'Gemini 4 Carbon / Neon + DeepSeek V4.1-Flash',
+        secondary: 'GPT-6.2 Sol / Astra',
+        reason: 'Gemini 还原视频中的操作演示步骤，DeepSeek V4.1-Flash 负责补全代码/计算推导与配套变式练习。',
+        steps: ['用 Gemini 逐帧还原视频中的实操流程与参数设置。', '用 DeepSeek V4.1-Flash 生成 3 道同类变式练习题并附分步解答。', '汇总为图文并茂的实操跟练讲义。'],
+        prompt: '请将视频中的演示过程整理为标准操作步骤（SOP），并针对每一步列出常见踩坑点，最后补充 3 道由浅入深的实操变式题及参考解答。'
+      },
+      code_notes: {
+        primary: 'DeepSeek V4.1-Flash + Claude Opus 5.5 / Fable 5.2',
+        secondary: 'Qwen4-Max（中文注释与本地部署）',
+        reason: 'DeepSeek V4.1-Flash 在代码准确率、算法调试与性价比上表现顶尖，搭配 Claude 的长文本架构梳理，最适合做编程/数理讲义。',
+        steps: ['用 DeepSeek V4.1-Flash 对代码或数学题进行逐行拆解、时间复杂度分析与反例测试。', '用 Claude Opus 5.5 / Fable 5.2 梳理整体知识图谱与模块设计思想。', '核对所有代码在本地环境运行无误后定稿。'],
+        prompt: '请将这段代码/算法题转化为一份高质量技术讲义：1) 用生活类比解释核心思想；2) 画出数据结构/状态转移的文字示意图；3) 逐行注释关键逻辑并分析时间与空间复杂度；4) 总结3个边界条件陷阱。'
+      },
+      code_slides: {
+        primary: 'DeepSeek V4.1-Flash + Kimi K3.1 Pro / Gamma 3.0',
+        secondary: 'GPT-6.2 Sol / Astra',
+        reason: 'DeepSeek 负责确保代码与公式绝对准确，Kimi K3.1 Pro 或 Gamma 负责把枯燥代码转化为清晰的分步教学幻灯片。',
+        steps: ['先用 DeepSeek V4.1-Flash 验证算法推导并精简核心代码片段（每页不超过12行）。', '用 Gamma 3.0 或 Kimi 生成“问题引入→暴力解法→优化思路→代码实现”演示稿。', '高亮关键变量变化过程，提升听众理解度。'],
+        prompt: '请围绕这个算法/技术主题生成一套 10 页教学 PPT 文案，遵循“痛点场景→直观思路→逐步优化→核心代码片段（精简高亮）→实战对比”的节奏。'
+      },
+      code_quiz: {
+        primary: 'DeepSeek V4.1-Flash',
+        secondary: 'GPT-6.2 Sol / Astra',
+        reason: 'DeepSeek V4.1-Flash 擅长生成带陷阱选项的代码读程题、Debug 找错题与数理分步测验，且免费无门槛适合批量出题。',
+        steps: ['设定知识点与难度梯度（基础/进阶/面试级）。', '让 DeepSeek V4.1-Flash 生成代码改错题、输出结果预测题与边界测试题。', '要求附带“为什么错误选项不对”的逐项解析。'],
+        prompt: '请针对该编程/数学知识点设计 8 道诊断式测验题（含2道代码找错题、3道边界条件题、3道综合应用题），每题给出标准答案及常见错误思维剖析。'
+      },
+      code_workbook: {
+        primary: 'DeepSeek V4.1-Flash + Claude Opus 5.5 / Fable 5.2',
+        secondary: 'Qwen4-Max',
+        reason: '双强组合：DeepSeek V4.1-Flash 负责高准确率算法例题与测试用例，Claude 负责完整工程架构与代码规范讲解。',
+        steps: ['用 DeepSeek 生成从“最小可运行示例”到“工程级实现”的 3 阶例题。', '用 Claude 审核代码规范、异常处理与可扩展性建议。', '附带测试用例清单，供学习者自检通过率。'],
+        prompt: '请编写一份面向实战的编程/数理例题手册：包含 3 道递进难度例题，每题提供【题目拆解】、【分步推导/代码实现】、【复杂度对比】及【独立思考拓展题】。'
+      },
+      topic_notes: {
+        primary: 'GPT-6.2 Sol / Astra + Qwen4-Max / 豆包',
+        secondary: 'Claude Opus 5.5 / Fable 5.2（深度校对）',
+        reason: 'GPT-6.2 Sol / Astra 通用推理与框架搭建均衡，配合 Qwen4-Max 或豆包做中文本地化润色，能快速把零散主题变成完整讲义。',
+        steps: ['用 GPT-6.2 Sol / Astra 生成“零基础→进阶”学习路径与章节大纲。', '按章节逐一展开概念解释、真实案例与对比表格。', '用 Claude 或权威文献核查关键事实与数据来源。'],
+        prompt: '请为零基础学习者编写一份关于【主题】的系统学习讲义：包含学习目标、核心概念通俗拆解、真实行业案例、常见误区对比表以及延伸阅读清单。'
+      },
+      topic_slides: {
+        primary: 'Gamma 3.0 + GPT-6.2 Sol / Astra',
+        secondary: 'Kimi K3.1 Pro（中文内容型PPT）',
+        reason: 'Gamma 3.0 主打从一句主题快速生成高颜值、强叙事感的整套简报，配合 GPT-5.5 优化逻辑钩子，效率最高。',
+        steps: ['先用 GPT-6.2 Sol / Astra 打磨演讲故事线与每页核心观点。', '将大纲直接输入 Gamma 3.0 一键生成排版，再用 Gamma Agent 微调视觉。', '中文政策/汇报类场景可直接用 Kimi K3.1 Pro 辅助内容扩充。'],
+        prompt: '请围绕【主题】设计一套 12 页公开课/分享会 PPT 大纲，要求开篇有现实痛点引入，中段用对比案例讲清底层逻辑，结尾给出 3 条可立即落地的行动步骤。'
+      },
+      topic_quiz: {
+        primary: 'GPT-6.2 Sol / Astra + Coursebox',
+        secondary: 'Knowt',
+        reason: 'GPT-5.5 负责按布鲁姆认知层次（记忆→理解→应用→分析）设计高质量题目，Coursebox 负责封装成结构化学习练习。',
+        steps: ['让 GPT-5.5 按“概念辨析 + 场景决策”维度生成阶梯题库。', '导入 Coursebox 或 Knowt 制作在线抽认卡与互动练习。', '根据错题反馈动态补充讲义案例。'],
+        prompt: '请围绕【主题】按“基础记忆、概念辨析、实战应用”三个层级，各出 4 道高质量练习题，并给出简明解析与知识点回溯提示。'
+      },
+      topic_workbook: {
+        primary: 'GPT-6.2 Sol / Astra + Qwen4-Max',
+        secondary: 'DeepSeek V4.1-Flash',
+        reason: 'GPT-5.5 擅长构建项目制（PBL）实操任务书，Qwen4-Max 中文表达流畅，适合制作可直接上手的行动手册。',
+        steps: ['用 GPT-5.5 拆解一个 7 天可完成的微型实战项目。', '为每天设定清晰输入、操作清单与验收标准。', '用 Qwen4-Max 润色为通俗易懂的中文行动指南。'],
+        prompt: '请将【主题】设计为一份 7 天实战行动手册：每天包含 1 个核心微任务（30分钟内可完成）、操作步骤清单、常见卡点提示与自我验收标准。'
+      }
+    };
+
+    const POLICY_ITEMS = [
+      {
+        id: 'p0',
+        region: 'cn',
+        regionLabel: '中国 · 11月热点',
+        date: '2026-10-23 / 11-09解读',
+        title: '国务院办公厅印发《关于适应人工智能技术发展助力构建就业友好型发展方式的意见》',
+        summary: '明确提出“稳慎把握人工智能在劳动密集型行业应用的范围、力度、节奏，尽可能减少对从业人员的冲击”。中国社科院学部委员蔡昉在2026外滩年会呼吁，应对AI从高端岗位切入替代的新特征，须将结构性就业矛盾纳入“投资于人”战略。',
+        impact: '国家首次在顶层制度层面平衡 AI 效率提升与就业稳定，加速推动职业再培训与复合型人才培养。',
+        url: 'https://www.chinanews.com.cn/sh/2026/11-09/10728824.shtml',
+        sourceName: '中国新闻周刊'
+      },
+      {
+        id: 'p1',
+        region: 'cn',
+        regionLabel: '中国',
+        date: '2026-09-14',
+        title: '国家网信办：累计 1,112 款生成式AI服务完成备案，端侧模型加速入场',
+        summary: '2026年7–8月新增124款生成式AI服务完成备案（其中包含7款手机端侧生成式AI服务），地方网信办新增133款应用登记。截至8月31日累计1,112款备案、731款登记，均须在显著位置公示模型名称与备案号。',
+        impact: '合规基座选择极大丰富，手机端侧与垂直行业应用进入规模化持证上岗阶段。',
+        url: 'https://www.cac.gov.cn/2026-09/14/c_1791136833136332.htm',
+        sourceName: '中国网信网'
+      },
+      {
+        id: 'p2',
+        region: 'cn',
+        regionLabel: '中国',
+        date: '2026-11-04',
+        title: '2026人工智能+大会（GAI+C）：启动“央企AI场景共创伙伴计划”',
+        summary: '大会聚焦国产智能计算生态、央企场景开放与物理AI持续学习，联合中国电子、中汽科技、国网经济研究院与智谱、摩尔线程等发布《中国人工智能国际应用与治理合作白皮书》及国产异构推理Token工厂方案。',
+        impact: '政策重心从单纯建算力转向“真实产业场景对接 + 异构推理降本”。',
+        url: 'https://www.ncsti.gov.cn/kjdt/scyq/zgckxc/zgcdt/202611/t20261104_261142.html',
+        sourceName: '国际科技创新中心网'
+      },
+      {
+        id: 'p3',
+        region: 'eu',
+        regionLabel: '欧盟',
+        date: '2026-07-08',
+        title: '《欧盟人工智能法案》基础要求正式生效，最高面临全球营收7%罚款',
+        summary: '作为全球首部全面AI法规，法案按风险分级监管并区分“提供商”与“部署方”义务。禁止类实践违规最高可罚3,500万欧元或全球年营收7%；尽管部分高风险系统关键截止日期预计修订延至2027年底和2028年，但合规基建已成企业刚需。',
+        impact: '涉欧企业与开发者须立即梳理AI系统盘点清单，并在合同中明确供应商合规责任。',
+        url: 'https://www.foley.com/zh/insights/publications/2026/07/compliance-and-enforcement-in-global-ai-regulation-eu-ai-act-risks-and-international-regulatory-challenges/',
+        sourceName: 'Foley 法律洞察'
+      },
+      {
+        id: 'p4',
+        region: 'us',
+        regionLabel: '美国',
+        date: '2026-10-14',
+        title: '美国延续自愿性框架与《人工智能权利法案蓝图》五项保护原则',
+        summary: '相较欧盟强立法与中国的备案标注体系，美国主要依托自愿性框架与白宫OSTP发布的五项核心原则（安全有效系统、算法歧视保护、数据隐私等），全球监管体系呈现碎片化并快速演进格局。',
+        impact: '目前尚无单一合规标准可覆盖全球，跨国业务需按最严格辖区设计底层治理架构。',
+        url: 'https://cn.weforum.org/stories/emerging-technologies/understanding-the-ai-bill-of-rights-protection',
+        sourceName: '世界经济论坛'
+      }
+    ];
+
+    const FRONTIER_ITEMS = [
+      {
+        id: 'f0',
+        cat: 'infra',
+        catLabel: '国产算力与原生多模态',
+        stage: '2026.11 最新突破',
+        title: '美团发布 1.6 万亿参数 LongCat-2.5；中国日均 Token 调用量飙升至 140 万亿',
+        summary: '11月3日美团发布面向长程智能体任务的原生多模态模型 LongCat-2.5（每 token 激活约 480 亿），训练全程基于国产算力完成，刷新国产算力单次训练规模纪录；同期虹桥国际科技周（11月20–22日）披露上海智算规模超 20 万 P，目标到 2028 年推动 8,000 台人形机器人进入工厂。',
+        takeaway: '国产全栈算力与超大规模多模态训练已经跑通，懂国产异构算力优化与具身工业部署的人才正进入黄金期。',
+        url: 'https://www.tmtpost.com/index.php/8197131.html',
+        sourceName: '钛媒体 & 新浪财经 2026.11'
+      },
+      {
+        id: 'f1',
+        cat: 'science',
+        catLabel: 'AI for Science',
+        stage: '范式跃迁 · 2026 热点',
+        title: '从 AI4S 迈向 AGI4S：通专融合架构与 AI 实验室伙伴',
+        summary: '上海AI实验室主任周伯文在 AAAI 2026 指出，科学发现是推理智能的终极试炼场，提出『智者』SAGE 架构及书生科学多模态大模型 Intern-S1、科学发现平台 Intern-Discovery。微软研究院亦预测，2026年 AI 不再止步于读论文，而是能够自主提出科学假设并调用实验仪器协作。',
+        takeaway: '科研与理工科学生应尽早掌握“领域科学知识 + AI 多模态推理/实验自动化工具”双栖能力。',
+        url: 'https://www.shlab.org.cn/news/5444226',
+        sourceName: '上海AI实验室 AAAI 2026'
+      },
+      {
+        id: 'f2',
+        cat: 'embodied',
+        catLabel: '空间与具身智能',
+        stage: '物理世界落地',
+        title: '空间智能（Spatial Intelligence）与通用物理机器人',
+        summary: '微软研究院2026观察指出，空间智能正依托可扩展3D数据集、空间推理基础模型与具身交互，让智能体真正理解几何、物理与语义并在真实3D环境中行动。通用机器人正从展示走向数据中心运维与湿实验室等真实作业场景。',
+        takeaway: '数字世界卷到极致后，“物理AI + 3D空间理解”是未来十年硬件与工程人才的最大增量。',
+        url: 'https://www.microsoft.com/en-us/research/articles/whats-next-in-ai/',
+        sourceName: 'Microsoft Research 2026'
+      },
+      {
+        id: 'f3',
+        cat: 'bio',
+        catLabel: '生物与医疗',
+        stage: '跨学科突破',
+        title: 'AI 解码生命语言：蛋白质设计与“虚拟患者”数字孪生',
+        summary: '生成式 AI 将生物学视为一门语言，用于设计全新蛋白质、预测细胞行为；结合海量临床就医数据与多模态基础模型，医学界正探索构建可模拟疾病进程与不同治疗方案反应的“虚拟患者”数字孪生体，迈向精准医疗。',
+        takeaway: '传统“生化环材”正被 AI 深度重构，计算生物学与生物制造迎来价值重估。',
+        url: 'https://www.microsoft.com/en-us/research/articles/whats-next-in-ai/',
+        sourceName: 'Microsoft Research 2026'
+      },
+      {
+        id: 'f4',
+        cat: 'infra',
+        catLabel: '算力与智能体系统',
+        stage: '底层架构革新',
+        title: '硬件解耦、光学互连与“上下文工程”支撑智能体原生经济',
+        summary: '为破解 GPU 集群能耗与高速传输瓶颈，硬件解耦（专用计算芯片与带宽优化芯片协同）及低功耗高带宽光学互连在2026年进入早期部署节点；软件层面，跨月保留记忆与状态的“上下文工程（Context Engineering）”让 AI 智能体从被动问答进化为长期协作伙伴。',
+        takeaway: '单纯写 Prompt 正在过时，懂得上下文状态管理、记忆架构与算力协同优化更具壁垒。',
+        url: 'https://www.microsoft.com/en-us/research/articles/whats-next-in-ai/',
+        sourceName: 'Microsoft Research 2026'
+      }
+    ];
+
+    const APP_VERTICALS = [
+      {
+        id: 'a1',
+        sector: '央国企与工业制造',
+        metric: '国产异构推理 Token 工厂',
+        desc: '2026人工智能+大会推动中国电子、中汽科技、国网经济研究院等央企开放一线场景，通过计算层改造拆分任务，让不同国产芯片协同承担最适合的推理计算，显著提升性价比。',
+        url: 'https://www.ncsti.gov.cn/kjdt/scyq/zgckxc/zgcdt/202611/t20261104_261142.html',
+        sourceName: '2026 GAI+C 大会'
+      },
+      {
+        id: 'a2',
+        sector: '教育备课与知识工作',
+        metric: '溯源摘要 + 智能体协作',
+        desc: '学习与办公场景已从“通用聊天框”分化为专业工作流：NotebookLM 解决多文档溯源，Gamma 3.0 解决叙事排版，Coursebox/Knowt 解决复习测验，但必须保留人类核查环节避免幻觉。',
+        url: 'https://www.coursebox.ai/zh/blog/ai-study-guide-maker',
+        sourceName: 'Coursebox 2026 评测'
+      },
+      {
+        id: 'a3',
+        sector: '影视短剧与内容生态（2026.11 实证）',
+        metric: 'AI短剧破22.19万部 · 警惕流水线内卷',
+        desc: 'DataEye数据显示2026上半年全网新上线AI短剧超22.19万部，但编剧单部收益从50万成本分5万压缩至5万成本AI漫剧分5000元；叠加深度伪造泛滥，仅靠堆量已无壁垒，真实性、IP创意与人类审美判断反而更具溢价。',
+        url: 'https://www.chinanews.com.cn/sh/2026/11-09/10728824.shtml',
+        sourceName: '中国新闻周刊 2026.11'
+      }
+    ];
+
+    const MAJORS_DATA = [
+      {
+        id: 'm1',
+        name: '具身智能',
+        badge: '2026交叉学科新增',
+        tracks: ['hardware'],
+        goals: ['research', 'industry_fast', 'steady'],
+        schools: '北航、北理工、北邮、哈工大等 9 所高校首批增设',
+        focus: '联动机械工程、控制科学、人工智能、生物医学工程与航空航天等学科，培养设计、制造与开发具身智能设备的复合型工程人才。',
+        outlook: '直击物理AI与通用机器人浪潮，校企联合实验室（如航天科工、华为、大疆）实训机会丰富。',
+        tip: '对数学、物理与动手编程要求极高，建议优先选择工科底蕴深厚、有机器人研究院的院校。',
+        url: 'https://www.beijing.gov.cn/fuwu/bmfw/sy/jrts/202605/t20260520_4659034.html'
+      },
+      {
+        id: 'm2',
+        name: '脑机科学与技术',
+        badge: '2026交叉学科新增',
+        tracks: ['bio', 'hardware'],
+        goals: ['research'],
+        schools: '教育部 2026 目录首批列入交叉学科门类新专业',
+        focus: '融合神经科学、信号处理、人工智能与生物医学工程，直接服务未来脑机接口与神经康复产业。',
+        outlook: '属于前沿未来产业方向，科研壁垒高，长期商业化潜力大。',
+        tip: '本科阶段偏基础交叉，建议做好读研/深造规划，关注学校是否具备医学院与信息学院联合师资。',
+        url: 'https://www.cernet.edu.cn/xxh/focus/zc/202604/t20260430_2732185.shtml'
+      },
+      {
+        id: 'm3',
+        name: '半导体工艺与装备',
+        badge: '2026国家战略急需',
+        tracks: ['hardware', 'industry'],
+        goals: ['steady', 'industry_fast'],
+        schools: '响应国家集成电路核心装备自主可控战略新增',
+        focus: '聚焦芯片制造工艺、核心半导体装备研发与智能制造，解决算力底层硬件卡脖子问题。',
+        outlook: 'AI 算力基建与国产异构芯片持续扩张，底层工艺与装备工程师稀缺且职业周期长。',
+        tip: '重工程实践与物理化学基础，抗互联网周期波动能力强。',
+        url: 'http://www.moe.gov.cn/jyb_xwfb/s5147/202604/t20260430_1435256.html?utm_source=chatgpt.com'
+      },
+      {
+        id: 'm4',
+        name: '未来机器人 / 交叉工程',
+        badge: '交叉学科门类重点',
+        tracks: ['hardware', 'industry'],
+        goals: ['industry_fast', 'research'],
+        schools: '同济大学等工科强校重点招生方向',
+        focus: '聚焦自主智能无人系统与人工智能在交通、建筑、汽车、制造等垂直工业场景的落地。',
+        outlook: '避开纯通用大模型内卷，深耕千行百业真实工业痛点，就业面广。',
+        tip: '选校时重点考察学校原有优势工科（如汽车、土木、自动化）与AI的结合紧密度。',
+        url: 'https://www.ecnu.edu.cn/info/1426/72569.htm'
+      },
+      {
+        id: 'm5',
+        name: '生物制造 / AI+生命科学',
+        badge: '2026新兴产业新增',
+        tracks: ['bio'],
+        goals: ['research', 'steady'],
+        schools: '2026目录新增生物制造；复旦等综合性高校布局AI+生命科学交叉',
+        focus: '结合合成生物学、发酵工程与AI蛋白质设计/细胞预测模型，推动医药与新材料绿色制造。',
+        outlook: '受益于 AI for Science 爆发，传统生物专业借助计算能力实现跨代升级。',
+        tip: '务必在大学期间补齐 Python 数据分析与生物信息学技能，避免只做传统湿实验。',
+        url: 'https://www.cernet.edu.cn/xxh/focus/zc/202604/t20260430_2732185.shtml'
+      },
+      {
+        id: 'm6',
+        name: '商业人工智能 / 数字金融 / 数字贸易',
+        badge: '2026智能经济新增',
+        tracks: ['business'],
+        goals: ['industry_fast', 'steady'],
+        schools: '2026目录立足服务业扩能提质与智能经济新形态增设',
+        focus: '将 AI 工具链、数据分析与金融风控、跨境数字贸易、企业智能化转型管理深度融合。',
+        outlook: '适合偏文社商科背景学生避开被替代的传统文职，转向“懂业务+会驾驭AI”的复合岗位。',
+        tip: '警惕纯概念水课，优先选修计量经济、Python商业分析与真实企业AI项目实战。',
+        url: 'https://www.cernet.edu.cn/xxh/focus/zc/202604/t20260430_2732185.shtml'
+      },
+      {
+        id: 'm7',
+        name: '低空技术与工程 / 交通能源融合 / 农业机器人',
+        badge: '实体升级超常设置',
+        tracks: ['industry', 'hardware'],
+        goals: ['steady', 'industry_fast'],
+        schools: '北航等6校率先增设低空技术与工程；2026新增交通能源融合与农业机器人',
+        focus: '面向低空经济无人机系统、新能源交通网融合与智慧农业装备，直接服务区域万亿级产业集群。',
+        outlook: '与国家基建、央国企能源交通转型高度契合，区域产业匹配度高。',
+        tip: '结合所在省份的急需专业清单与产业集群选报，就业地域契合度更高。',
+        url: 'https://www.cernet.edu.cn/xxh/focus/zc/202604/t20260430_2732185.shtml'
+      }
+    ];
+
+    // ==================== STATE MANAGEMENT ====================
+    const state = {
+      activeTab: 'brief',
+      edition: 'today',
+      policyRegion: 'all',
+      frontierCat: 'all',
+      handoutInput: 'paper',
+      handoutOutput: 'notes',
+      majorTrack: 'all',
+      careerGoal: 'all',
+      bookmarks: [],
+      notes: ''
+    };
+
+    const charts = {};
+
+    function loadPersistedState() {
+      try {
+        const savedBm = localStorage.getItem('ai_daily_bookmarks_v1');
+        if (savedBm) state.bookmarks = JSON.parse(savedBm);
+        const savedNotes = localStorage.getItem('ai_daily_notes_v1');
+        if (savedNotes) state.notes = savedNotes;
+      } catch (e) {
+        // Ignore sandbox storage restrictions
+      }
+    }
+
+    function savePersistedState() {
+      try {
+        localStorage.setItem('ai_daily_bookmarks_v1', JSON.stringify(state.bookmarks));
+        localStorage.setItem('ai_daily_notes_v1', state.notes);
+      } catch (e) {
+        // Ignore sandbox storage restrictions
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const msgEl = document.getElementById('toastMessage');
+      if (!toast || !msgEl) return;
+      msgEl.textContent = msg;
+      toast.classList.remove('hidden');
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 2200);
+    }
+
+    function copyTextSafe(text) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast('Prompt 模板已复制到剪贴板');
+        }).catch(() => fallbackCopy(text));
+      } else {
+        fallbackCopy(text);
+      }
+    }
+
+    function fallbackCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand('copy');
+        showToast('Prompt 模板已复制到剪贴板');
+      } catch (e) {
+        showToast('请手动选中复制');
+      }
+      document.body.removeChild(ta);
+    }
+
+    function toggleBookmark(item) {
+      const idx = state.bookmarks.findIndex(b => b.id === item.id);
+      if (idx >= 0) {
+        state.bookmarks.splice(idx, 1);
+        showToast('已移出收藏夹');
+      } else {
+        state.bookmarks.unshift(item);
+        showToast('已加入个人收藏夹');
+      }
+      savePersistedState();
+      updateBookmarkUI();
+      renderCurrentTabData();
+    }
+
+    function isBookmarked(id) {
+      return state.bookmarks.some(b => b.id === id);
+    }
+
+    // ==================== TAB SWITCHING ====================
+    function switchTab(tabId) {
+      state.activeTab = tabId;
+      document.querySelectorAll('.tab-panel').forEach(p => {
+        p.classList.toggle('active', p.id === 'tab-' + tabId);
+      });
+      document.querySelectorAll('.nav-tab').forEach(btn => {
+        const active = btn.dataset.tab === tabId;
+        btn.className = active
+          ? 'nav-tab px-3 py-2 rounded-lg text-sm font-medium transition-colors bg-slate-900 text-white'
+          : 'nav-tab px-3 py-2 rounded-lg text-sm font-medium transition-colors text-slate-600 hover:text-slate-900 hover:bg-slate-100';
+      });
+      document.querySelectorAll('.mobile-nav-tab').forEach(btn => {
+        const active = btn.dataset.tab === tabId;
+        btn.className = active
+          ? 'mobile-nav-tab px-3 py-2 rounded-lg text-sm font-medium text-left bg-slate-900 text-white'
+          : 'mobile-nav-tab px-3 py-2 rounded-lg text-sm font-medium text-left text-slate-600 hover:bg-slate-100';
+      });
+      const mobileMenu = document.getElementById('mobileMenu');
+      if (mobileMenu) mobileMenu.classList.add('hidden');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      renderChartsForTab(tabId);
+    }
+
+    // ==================== RENDER FUNCTIONS ====================
+    function renderDailyDigest() {
+      const grid = document.getElementById('dailyDigestGrid');
+      if (!grid) return;
+      const items = DAILY_DIGESTS[state.edition] || DAILY_DIGESTS.today;
+      const colorMap = {
+        indigo: 'bg-indigo-50 text-indigo-700 border-indigo-100',
+        emerald: 'bg-emerald-50 text-emerald-700 border-emerald-100',
+        cyan: 'bg-cyan-50 text-cyan-700 border-cyan-100',
+        amber: 'bg-amber-50 text-amber-700 border-amber-100',
+        rose: 'bg-rose-50 text-rose-700 border-rose-100',
+        violet: 'bg-violet-50 text-violet-700 border-violet-100'
+      };
+      grid.innerHTML = items.map(item => {
+        const saved = isBookmarked(item.id);
+        return `
+          <article class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full border ${colorMap[item.color] || colorMap.indigo}">${item.tag}</span>
+                <button type="button" data-bm-id="${item.id}" class="bm-digest-btn p-1.5 rounded-lg hover:bg-slate-100 transition-colors ${saved ? 'text-indigo-600' : 'text-slate-400'}" title="收藏此条目">
+                  <i data-lucide="${saved ? 'bookmark-check' : 'bookmark'}" class="w-4 h-4"></i>
+                </button>
+              </div>
+              <h3 class="font-bold text-slate-900 text-base leading-snug mb-2">${item.title}</h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">${item.summary}</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+              <a href="${item.sourceUrl}" target="_blank" rel="noopener noreferrer" class="text-slate-500 hover:text-indigo-600 hover:underline truncate max-w-[60%]">${item.sourceTitle} ↗</a>
+              <button type="button" data-jump="${item.tab}" class="jump-btn font-semibold text-indigo-600 hover:text-indigo-800">深入阅读 →</button>
+            </div>
+          </article>
+        `;
+      }).join('');
+
+      grid.querySelectorAll('.bm-digest-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const item = items.find(i => i.id === btn.dataset.bmId);
+          if (item) toggleBookmark({ id: item.id, title: item.title, tag: item.tag, tab: item.tab, url: item.sourceUrl });
+        });
+      });
+      grid.querySelectorAll('.jump-btn').forEach(btn => {
+        btn.addEventListener('click', () => switchTab(btn.dataset.jump));
+      });
+      lucide.createIcons();
+    }
+
+    function renderHandoutMatcher() {
+      const box = document.getElementById('handoutResultBox');
+      if (!box) return;
+      const key = `${state.handoutInput}_${state.handoutOutput}`;
+      const rec = HANDOUT_RECIPES[key] || HANDOUT_RECIPES.paper_notes;
+      box.innerHTML = `
+        <div class="space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-indigo-600">最优组合推荐</span>
+              <h4 class="text-lg font-extrabold text-slate-900">${rec.primary}</h4>
+            </div>
+            <span class="text-xs font-medium px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-slate-600">备选：${rec.secondary}</span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">${rec.reason}</p>
+          <div class="bg-white rounded-xl p-3.5 border border-slate-200">
+            <div class="text-xs font-bold text-slate-800 mb-2">3 步高效产出讲义流程</div>
+            <ol class="text-xs text-slate-600 space-y-1.5 list-decimal list-inside">
+              ${rec.steps.map(s => `<li>${s}</li>`).join('')}
+            </ol>
+          </div>
+          <div class="bg-slate-900 rounded-xl p-3.5 text-slate-100">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="text-[11px] font-semibold text-cyan-300">可直接复制的讲义生成 Prompt</span>
+              <button id="copyPromptBtn" type="button" class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-medium transition-colors">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i> 复制模板
+              </button>
+            </div>
+            <p class="text-xs text-slate-200 leading-relaxed font-mono">${rec.prompt}</p>
+          </div>
+        </div>
+      `;
+      const copyBtn = document.getElementById('copyPromptBtn');
+      if (copyBtn) {
+        copyBtn.addEventListener('click', () => copyTextSafe(rec.prompt));
+      }
+      lucide.createIcons();
+    }
+
+    function renderModelsAndTools() {
+      const tbody = document.getElementById('modelTableBody');
+      if (tbody) {
+        tbody.innerHTML = MODELS_DATA.map(m => `
+          <tr class="hover:bg-slate-50/70">
+            <td class="py-2.5 pr-3 align-top">
+              <div class="font-bold text-slate-900">${m.name}</div>
+              <div class="text-[11px] text-indigo-600 font-medium">${m.tier}</div>
+            </td>
+            <td class="py-2.5 px-3 text-slate-700 align-top">${m.specialty}</td>
+            <td class="py-2.5 pl-3 text-slate-700 align-top">
+              ${m.handoutFit}
+              <a href="${m.url}" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline text-xs ml-1">[评测]</a>
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      const toolsGrid = document.getElementById('handoutToolsGrid');
+      if (toolsGrid) {
+        toolsGrid.innerHTML = HANDOUT_TOOLS.map(t => `
+          <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div>
+              <span class="inline-block text-[11px] font-semibold px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 mb-2">${t.badge}</span>
+              <h4 class="font-bold text-slate-900 text-sm mb-2">${t.name}</h4>
+              <p class="text-xs text-slate-600 leading-relaxed mb-2"><span class="font-semibold text-slate-800">核心优势：</span>${t.bestFor}</p>
+              <p class="text-xs text-slate-500 leading-relaxed"><span class="font-semibold text-slate-700">使用注意：</span>${t.limit}</p>
+            </div>
+            <a href="${t.url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs font-semibold text-indigo-600 hover:underline mt-3 pt-2 border-t border-slate-100">查看实测详情 ↗</a>
+          </div>
+        `).join('');
+      }
+    }
+
+    function renderPolicies() {
+      const container = document.getElementById('policyCardsContainer');
+      if (!container) return;
+      const filtered = state.policyRegion === 'all'
+        ? POLICY_ITEMS
+        : POLICY_ITEMS.filter(p => p.region === state.policyRegion);
+      container.innerHTML = filtered.map(p => {
+        const saved = isBookmarked(p.id);
+        return `
+          <article class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-100">${p.regionLabel}</span>
+                <span class="text-xs text-slate-400">${p.date}</span>
+              </div>
+              <button type="button" data-bm-id="${p.id}" class="bm-policy-btn p-1.5 rounded-lg hover:bg-slate-100 ${saved ? 'text-indigo-600' : 'text-slate-400'}" title="收藏政策">
+                <i data-lucide="${saved ? 'bookmark-check' : 'bookmark'}" class="w-4 h-4"></i>
+              </button>
+            </div>
+            <h3 class="font-bold text-slate-900 text-base mb-1.5">${p.title}</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-2.5">${p.summary}</p>
+            <div class="bg-slate-50 rounded-xl px-3.5 py-2.5 text-xs text-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <span><strong class="text-slate-900">现实影响：</strong>${p.impact}</span>
+              <a href="${p.url}" target="_blank" rel="noopener noreferrer" class="text-indigo-600 font-semibold hover:underline shrink-0">${p.sourceName} ↗</a>
+            </div>
+          </article>
+        `;
+      }).join('');
+
+      container.querySelectorAll('.bm-policy-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const item = POLICY_ITEMS.find(i => i.id === btn.dataset.bmId);
+          if (item) toggleBookmark({ id: item.id, title: item.title, tag: '政策 · ' + item.regionLabel, tab: 'policy', url: item.url });
+        });
+      });
+      lucide.createIcons();
+    }
+
+    function renderFrontier() {
+      const grid = document.getElementById('frontierCardsGrid');
+      if (!grid) return;
+      const filtered = state.frontierCat === 'all'
+        ? FRONTIER_ITEMS
+        : FRONTIER_ITEMS.filter(f => f.cat === state.frontierCat);
+      grid.innerHTML = filtered.map(f => {
+        const saved = isBookmarked(f.id);
+        return `
+          <article class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-cyan-50 text-cyan-700 border border-cyan-100">${f.catLabel}</span>
+                  <span class="text-xs font-medium text-slate-500">${f.stage}</span>
+                </div>
+                <button type="button" data-bm-id="${f.id}" class="bm-frontier-btn p-1.5 rounded-lg hover:bg-slate-100 ${saved ? 'text-indigo-600' : 'text-slate-400'}">
+                  <i data-lucide="${saved ? 'bookmark-check' : 'bookmark'}" class="w-4 h-4"></i>
+                </button>
+              </div>
+              <h3 class="font-bold text-slate-900 text-lg mb-2">${f.title}</h3>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">${f.summary}</p>
+            </div>
+            <div class="space-y-3">
+              <div class="bg-indigo-50/70 border border-indigo-100 rounded-xl p-3 text-xs text-indigo-950">
+                <strong class="text-indigo-700">未来路径启示：</strong>${f.takeaway}
+              </div>
+              <div class="flex justify-end">
+                <a href="${f.url}" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-indigo-600 hover:underline">来源：${f.sourceName} ↗</a>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+
+      grid.querySelectorAll('.bm-frontier-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const item = FRONTIER_ITEMS.find(i => i.id === btn.dataset.bmId);
+          if (item) toggleBookmark({ id: item.id, title: item.title, tag: '前沿 · ' + item.catLabel, tab: 'frontier', url: item.url });
+        });
+      });
+      lucide.createIcons();
+    }
+
+    function renderAppVerticals() {
+      const grid = document.getElementById('appVerticalsGrid');
+      if (!grid) return;
+      grid.innerHTML = APP_VERTICALS.map(a => `
+        <article class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="text-xs font-bold text-amber-600 uppercase tracking-wider mb-1">${a.sector}</div>
+            <h3 class="font-bold text-slate-900 text-base mb-2">${a.metric}</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">${a.desc}</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex justify-end">
+            <a href="${a.url}" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-indigo-600 hover:underline">${a.sourceName} ↗</a>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function renderMajors() {
+      const grid = document.getElementById('majorCardsGrid');
+      if (!grid) return;
+      const filtered = MAJORS_DATA.filter(m => {
+        const trackOk = state.majorTrack === 'all' || m.tracks.includes(state.majorTrack);
+        const goalOk = state.careerGoal === 'all' || m.goals.includes(state.careerGoal);
+        return trackOk && goalOk;
+      });
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div class="col-span-full text-center py-8 text-sm text-slate-500">当前筛选组合暂无完全匹配条目，请切换为“全部高潜赛道”或“不限路径”查看。</div>`;
+        return;
+      }
+      grid.innerHTML = filtered.map(m => {
+        const saved = isBookmarked(m.id);
+        return `
+          <article class="bg-slate-50 rounded-2xl p-5 border border-slate-200 flex flex-col justify-between hover:border-indigo-300 transition-colors">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-700 border border-rose-100">${m.badge}</span>
+                <button type="button" data-bm-id="${m.id}" class="bm-major-btn p-1 rounded-lg hover:bg-slate-200/60 ${saved ? 'text-indigo-600' : 'text-slate-400'}" title="收藏专业">
+                  <i data-lucide="${saved ? 'bookmark-check' : 'bookmark'}" class="w-4 h-4"></i>
+                </button>
+              </div>
+              <h4 class="font-extrabold text-slate-900 text-base mb-1">${m.name}</h4>
+              <p class="text-xs font-medium text-indigo-700 mb-2.5">${m.schools}</p>
+              <p class="text-xs text-slate-700 leading-relaxed mb-2"><strong>核心培养：</strong>${m.focus}</p>
+              <p class="text-xs text-slate-700 leading-relaxed mb-2"><strong>未来机遇：</strong>${m.outlook}</p>
+            </div>
+            <div class="mt-3 pt-3 border-t border-slate-200/80 space-y-2">
+              <p class="text-[11px] text-amber-800 bg-amber-50 rounded-lg px-2.5 py-1.5 border border-amber-100"><strong>避坑建议：</strong>${m.tip}</p>
+              <div class="flex justify-end">
+                <a href="${m.url}" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-indigo-600 hover:underline">官方政策依据 ↗</a>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+
+      grid.querySelectorAll('.bm-major-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const item = MAJORS_DATA.find(i => i.id === btn.dataset.bmId);
+          if (item) toggleBookmark({ id: item.id, title: '专业报考 · ' + item.name, tag: item.badge, tab: 'career', url: item.url });
+        });
+      });
+      lucide.createIcons();
+    }
+
+    function updateBookmarkUI() {
+      const badge = document.getElementById('bookmarkBadge');
+      if (badge) badge.textContent = String(state.bookmarks.length);
+      const list = document.getElementById('bookmarksList');
+      if (!list) return;
+      if (state.bookmarks.length === 0) {
+        list.innerHTML = `<div class="text-xs text-slate-400 bg-slate-50 rounded-xl p-4 text-center border border-dashed border-slate-200">暂无收藏条目，点击任意情报或专业卡片右上角书签即可保存。</div>`;
+        return;
+      }
+      list.innerHTML = state.bookmarks.map(b => `
+        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-start justify-between gap-2">
+          <div class="min-w-0">
+            <span class="text-[10px] font-bold text-indigo-600">${b.tag}</span>
+            <button type="button" data-jump="${b.tab}" class="bm-jump-btn block text-left text-xs font-bold text-slate-900 hover:text-indigo-600 mt-0.5 line-clamp-2">${b.title}</button>
+            <a href="${b.url}" target="_blank" rel="noopener noreferrer" class="text-[11px] text-slate-500 hover:underline mt-1 inline-block">原始链接 ↗</a>
+          </div>
+          <button type="button" data-rm-id="${b.id}" class="rm-bm-btn p-1 text-slate-400 hover:text-rose-600 shrink-0" title="移除">
+            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      `).join('');
+
+      list.querySelectorAll('.rm-bm-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          state.bookmarks = state.bookmarks.filter(b => b.id !== btn.dataset.rmId);
+          savePersistedState();
+          updateBookmarkUI();
+          renderCurrentTabData();
+        });
+      });
+      list.querySelectorAll('.bm-jump-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.getElementById('bookmarkDrawer').classList.add('hidden');
+          switchTab(btn.dataset.jump);
+        });
+      });
+      lucide.createIcons();
+    }
+
+    function renderCurrentTabData() {
+      renderDailyDigest();
+      renderPolicies();
+      renderFrontier();
+      renderMajors();
+    }
+
+    // ==================== CHARTS ====================
+    function renderChartsForTab(tabId) {
+      if (tabId === 'capability') {
+        const ctx = document.getElementById('modelScoreChart');
+        if (!ctx) return;
+        if (charts.modelScore) charts.modelScore.destroy();
+        charts.modelScore = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['Claude Fable 5.2 (旗舰)', 'Claude Opus 5.5 (主力)', 'Gemini 4 Carbon (12月起)', 'Gemini 4 Neon (深度)', 'Claude Sonnet 5.5 (日常)', 'Gemini 4 Hydrogen (日常)'],
+            datasets: [{
+              label: 'API 输出单价 ($/百万Token)',
+              data: [40, 20, 20, 15, 10, 7.5],
+              backgroundColor: ['#4f46e5', '#6366f1', '#0f172a', '#06b6d4', '#818cf8', '#10b981'],
+              borderRadius: 8,
+              barThickness: 22
+            }]
+          },
+          options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: { callbacks: { label: c => `输出单价：$${c.parsed.x} / 1M Tokens` } }
+            },
+            scales: {
+              x: { beginAtZero: true, max: 45, grid: { color: '#f1f5f9' } },
+              y: { grid: { display: false } }
+            }
+          }
+        });
+      }
+
+      if (tabId === 'policy') {
+        const ctx = document.getElementById('policyFilingChart');
+        if (!ctx) return;
+        if (charts.policyFiling) charts.policyFiling.destroy();
+        charts.policyFiling = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['2026年4月30日', '2026年8月31日'],
+            datasets: [
+              {
+                label: '国家网信办累计备案（款）',
+                data: [868, 1112],
+                backgroundColor: '#0f172a',
+                borderRadius: 8
+              },
+              {
+                label: '地方网信办累计登记应用（款）',
+                data: [530, 731],
+                backgroundColor: '#10b981',
+                borderRadius: 8
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { position: 'bottom' } },
+            scales: {
+              y: { beginAtZero: true, grid: { color: '#f1f5f9' } },
+              x: { grid: { display: false } }
+            }
+          }
+        });
+      }
+
+      if (tabId === 'career') {
+        const ctx = document.getElementById('wefJobsChart');
+        if (!ctx) return;
+        if (charts.wefJobs) charts.wefJobs.destroy();
+        charts.wefJobs = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['预计新增岗位', '预计被取代岗位', '预计净增长岗位'],
+            datasets: [{
+              label: '全球岗位数（亿个）',
+              data: [1.7, 0.92, 0.78],
+              backgroundColor: ['#4f46e5', '#f43f5e', '#10b981'],
+              borderRadius: 10,
+              barThickness: 44
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: { callbacks: { label: c => `${c.parsed.y} 亿个岗位` } }
+            },
+            scales: {
+              y: { beginAtZero: true, max: 2.0, grid: { color: '#f1f5f9' } },
+              x: { grid: { display: false } }
+            }
+          }
+        });
+      }
+    }
+
+    // ==================== GLOBAL SEARCH ====================
+    function getSearchCorpus() {
+      const list = [];
+      Object.values(DAILY_DIGESTS).flat().forEach(i => list.push({ title: i.title, sub: i.tag + ' · ' + i.summary, tab: i.tab }));
+      MODELS_DATA.forEach(m => list.push({ title: m.name + ' (' + m.tier + ')', sub: 'AI能力 · ' + m.specialty + ' ' + m.handoutFit, tab: 'capability' }));
+      POLICY_ITEMS.forEach(p => list.push({ title: p.title, sub: '政策 · ' + p.summary, tab: 'policy' }));
+      FRONTIER_ITEMS.forEach(f => list.push({ title: f.title, sub: '前沿 · ' + f.summary, tab: 'frontier' }));
+      MAJORS_DATA.forEach(m => list.push({ title: '专业报考：' + m.name, sub: m.schools + ' · ' + m.focus, tab: 'career' }));
+      return list;
+    }
+
+    function renderSearchResults(q) {
+      const box = document.getElementById('searchResultsList');
+      if (!box) return;
+      const term = (q || '').trim().toLowerCase();
+      const corpus = getSearchCorpus();
+      const matches = term
+        ? corpus.filter(c => (c.title + ' ' + c.sub).toLowerCase().includes(term)).slice(0, 12)
+        : corpus.slice(0, 6);
+      if (matches.length === 0) {
+        box.innerHTML = `<div class="p-6 text-center text-xs text-slate-400">未找到包含 “${term}” 的情报条目</div>`;
+        return;
+      }
+      box.innerHTML = matches.map(m => `
+        <button type="button" data-jump="${m.tab}" class="search-hit-btn w-full text-left p-3 rounded-xl hover:bg-slate-50 border border-transparent hover:border-slate-200 transition-colors">
+          <div class="font-bold text-slate-900 text-xs sm:text-sm">${m.title}</div>
+          <div class="text-xs text-slate-500 line-clamp-2 mt-0.5">${m.sub}</div>
+        </button>
+      `).join('');
+      box.querySelectorAll('.search-hit-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.getElementById('searchModal').classList.add('hidden');
+          switchTab(btn.dataset.jump);
+        });
+      });
+    }
+
+    // ==================== INIT & EVENT LISTENERS ====================
+    document.addEventListener('DOMContentLoaded', () => {
+      loadPersistedState();
+
+      // Nav tabs
+      document.querySelectorAll('.nav-tab, .mobile-nav-tab').forEach(btn => {
+        btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+      });
+      document.getElementById('brandHomeBtn').addEventListener('click', () => switchTab('brief'));
+      document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+        document.getElementById('mobileMenu').classList.toggle('hidden');
+      });
+
+      // Hero jump buttons
+      document.querySelectorAll('.jump-btn').forEach(btn => {
+        btn.addEventListener('click', () => switchTab(btn.dataset.jump));
+      });
+
+      // Edition switcher
+      document.getElementById('editionSelect').addEventListener('change', (e) => {
+        state.edition = e.target.value;
+        renderDailyDigest();
+      });
+
+      // Handout matcher buttons
+      document.querySelectorAll('.handout-input-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          state.handoutInput = btn.dataset.input;
+          document.querySelectorAll('.handout-input-btn').forEach(b => {
+            const active = b.dataset.input === state.handoutInput;
+            b.className = active
+              ? 'handout-input-btn px-3 py-2.5 rounded-xl border text-left text-xs font-semibold transition-all bg-indigo-50 border-indigo-500 text-indigo-900'
+              : 'handout-input-btn px-3 py-2.5 rounded-xl border text-left text-xs font-semibold transition-all bg-white border-slate-200 text-slate-700 hover:border-slate-300';
+          });
+          renderHandoutMatcher();
+        });
+      });
+
+      document.querySelectorAll('.handout-output-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          state.handoutOutput = btn.dataset.output;
+          document.querySelectorAll('.handout-output-btn').forEach(b => {
+            const active = b.dataset.output === state.handoutOutput;
+            b.className = active
+              ? 'handout-output-btn px-3 py-2.5 rounded-xl border text-left text-xs font-semibold transition-all bg-indigo-50 border-indigo-500 text-indigo-900'
+              : 'handout-output-btn px-3 py-2.5 rounded-xl border text-left text-xs font-semibold transition-all bg-white border-slate-200 text-slate-700 hover:border-slate-300';
+          });
+          renderHandoutMatcher();
+        });
+      });
+
+      // Policy filters
+      document.querySelectorAll('.policy-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          state.policyRegion = btn.dataset.region;
+          document.querySelectorAll('.policy-filter-btn').forEach(b => {
+            const active = b.dataset.region === state.policyRegion;
+            b.className = active
+              ? 'policy-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 text-white'
+              : 'policy-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white border border-slate-200 text-slate-600 hover:bg-slate-50';
+          });
+          renderPolicies();
+        });
+      });
+
+      // Frontier filters
+      document.querySelectorAll('.frontier-filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          state.frontierCat = btn.dataset.cat;
+          document.querySelectorAll('.frontier-filter-btn').forEach(b => {
+            const active = b.dataset.cat === state.frontierCat;
+            b.className = active
+              ? 'frontier-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-900 text-white'
+              : 'frontier-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white border border-slate-200 text-slate-600 hover:bg-slate-50';
+          });
+          renderFrontier();
+        });
+      });
+
+      // Major matcher filters
+      document.querySelectorAll('.major-track-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          state.majorTrack = btn.dataset.track;
+          document.querySelectorAll('.major-track-btn').forEach(b => {
+            const active = b.dataset.track === state.majorTrack;
+            b.className = active
+              ? 'major-track-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-900 text-white'
+              : 'major-track-btn px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200';
+          });
+          renderMajors();
+        });
+      });
+
+      document.querySelectorAll('.career-goal-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          state.careerGoal = btn.dataset.goal;
+          document.querySelectorAll('.career-goal-btn').forEach(b => {
+            const active = b.dataset.goal === state.careerGoal;
+            b.className = active
+              ? 'career-goal-btn px-3 py-2 rounded-xl text-xs font-semibold bg-indigo-600 text-white'
+              : 'career-goal-btn px-3 py-2 rounded-xl text-xs font-semibold bg-indigo-50 text-indigo-800 hover:bg-indigo-100';
+          });
+          renderMajors();
+        });
+      });
+
+      // Search modal
+      const searchModal = document.getElementById('searchModal');
+      const searchInput = document.getElementById('globalSearchInput');
+      document.getElementById('openSearchBtn').addEventListener('click', () => {
+        searchModal.classList.remove('hidden');
+        renderSearchResults(searchInput.value);
+        searchInput.focus();
+      });
+      document.getElementById('closeSearchBtn').addEventListener('click', () => searchModal.classList.add('hidden'));
+      searchModal.addEventListener('click', (e) => { if (e.target === searchModal) searchModal.classList.add('hidden'); });
+      searchInput.addEventListener('input', (e) => renderSearchResults(e.target.value));
+
+      // Bookmark drawer & notes
+      const drawer = document.getElementById('bookmarkDrawer');
+      document.getElementById('openDrawerBtn').addEventListener('click', () => {
+        drawer.classList.remove('hidden');
+        updateBookmarkUI();
+      });
+      document.getElementById('closeDrawerBtn').addEventListener('click', () => drawer.classList.add('hidden'));
+      document.getElementById('drawerBackdrop').addEventListener('click', () => drawer.classList.add('hidden'));
+      document.getElementById('clearBookmarksBtn').addEventListener('click', () => {
+        state.bookmarks = [];
+        savePersistedState();
+        updateBookmarkUI();
+        renderCurrentTabData();
+        showToast('已清空收藏夹');
+      });
+
+      const notesInput = document.getElementById('personalNotesInput');
+      notesInput.value = state.notes;
+      notesInput.addEventListener('input', (e) => {
+        state.notes = e.target.value;
+        savePersistedState();
+      });
+
+      document.getElementById('exportNotesBtn').addEventListener('click', () => {
+        const md = `# 智潮日报 · 个人学习与路径笔记 (2026-11-27)\n\n## 我的笔记\n${state.notes || '（暂无文字笔记）'}\n\n## 已收藏情报\n${state.bookmarks.map(b => `- [${b.tag}] ${b.title} (${b.url})`).join('\n') || '（暂无收藏）'}\n`;
+        const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'ai_daily_notes_2026-11-27.md';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast('笔记已导出为 Markdown');
+      });
+
+      // Initial renders
+      renderDailyDigest();
+      renderHandoutMatcher();
+      renderModelsAndTools();
+      renderPolicies();
+      renderFrontier();
+      renderAppVerticals();
+      renderMajors();
+      updateBookmarkUI();
+      lucide.createIcons();
+
+      // PWA Service Worker registration
+      if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      }
+
+      // PWA Install Prompt & iOS Fallback Modal
+      let deferredInstallPrompt = null;
+      const installBtn = document.getElementById('installAppBtn');
+      const installModal = document.getElementById('installModal');
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredInstallPrompt = e;
+      });
+      if (installBtn) {
+        installBtn.addEventListener('click', async () => {
+          if (deferredInstallPrompt) {
+            deferredInstallPrompt.prompt();
+            const choice = await deferredInstallPrompt.userChoice;
+            deferredInstallPrompt = null;
+            if (choice && choice.outcome === 'accepted') {
+              showToast('已开始安装「智潮日报」到桌面');
+            }
+          } else if (installModal) {
+            installModal.classList.remove('hidden');
+          }
+        });
+      }
+      ['closeInstallModalBtn', 'confirmInstallModalBtn'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el && installModal) el.addEventListener('click', () => installModal.classList.add('hidden'));
+      });
+      if (installModal) {
+        installModal.addEventListener('click', (e) => { if (e.target === installModal) installModal.classList.add('hidden'); });
+      }
+
+      // Auto-load latest daily_data.json when hosted over HTTP/HTTPS
+      if (window.location.protocol.startsWith('http')) {
+        fetch('./daily_data.json', { cache: 'no-store' })
+          .then(res => res.ok ? res.json() : null)
+          .then(data => {
+            if (data && Array.isArray(data.todayDigests) && data.todayDigests.length > 0) {
+              DAILY_DIGESTS.today = data.todayDigests;
+              renderDailyDigest();
+            }
+          })
+          .catch(() => {});
+      }
+    });
+  </script>
+</body>
+</html>
