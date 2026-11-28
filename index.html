@@ -89,7 +89,7 @@
             <i data-lucide="smartphone" class="w-4 h-4"></i>
             <span class="hidden sm:inline">安装App</span>
           </button>
-          <button id="openSearchBtn" type="button"  class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-600 text-sm transition-colors" title="搜索全站情报">
+          <button id="openSearchBtn" type="button" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-600 text-sm transition-colors" title="搜索全站情报">
             <i data-lucide="search" class="w-4 h-4"></i>
             <span class="hidden sm:inline">检索</span>
           </button>
@@ -129,7 +129,7 @@
         <div class="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-900/80 to-slate-900/40"></div>
         <div class="relative p-6 sm:p-8 lg:p-10 max-w-3xl space-y-4">
           <div class="flex flex-wrap items-center gap-2 text-xs font-semibold">
-            <span class="px-2.5 py-1 rounded-full bg-cyan-500/20 text-cyan-200 border border-cyan-400/30">2026年11月27日 · 第331期</span>
+            <span id="heroDateBadge" class="px-2.5 py-1 rounded-full bg-cyan-500/20 text-cyan-200 border border-cyan-400/30">2026年11月27日 · 自动更新版</span>
             <span class="px-2.5 py-1 rounded-full bg-indigo-500/20 text-indigo-200 border border-indigo-400/30">全维度情报 · 现实路径</span>
           </div>
           <h1 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight">
@@ -564,6 +564,79 @@
         </div>
       </div>
 
+      <!-- C9 League & Tsinghua/PKU Sprint Guide (AI / Chip / CS) -->
+      <div class="bg-white rounded-2xl border border-indigo-200 shadow-sm overflow-hidden">
+        <div class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 px-6 py-4 text-white flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-2">
+            <i data-lucide="award" class="w-5 h-5 text-amber-400"></i>
+            <h3 class="font-bold text-base">C9 联盟王牌专业与清北冲刺指南（AI · 芯片设计 · 计算机）</h3>
+          </div>
+          <span class="text-xs text-indigo-200">清北门槛拆解 + 华五/C9 梯度平替 + 务实就业大白话</span>
+        </div>
+
+        <div class="p-6 space-y-5">
+          <!-- Jiangxi Province Exclusive Tsinghua / PKU & C9 Reality Check -->
+          <div class="bg-amber-50/80 border border-amber-200 rounded-2xl p-4 sm:p-5 space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div class="flex items-center gap-2 font-extrabold text-slate-900 text-sm sm:text-base">
+                <i data-lucide="target" class="w-4 h-4 text-rose-600"></i>
+                江西省（物理类）专属：冲清北与 C9（AI / 芯片 / 计算机）成绩排位坐标
+              </div>
+              <a href="https://gaokao.eol.cn/jiang_xi/dongtai/202507/t20250722_2682460.shtml" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-indigo-600 hover:underline">江西2025本科投档统计表 ↗</a>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+              <div class="bg-white rounded-xl p-3 border border-amber-100">
+                <div class="font-bold text-slate-900">江西高考体量与底线</div>
+                <div class="text-slate-900 font-extrabold text-sm mt-0.5">2026约 56.93 万人报名</div>
+                <p class="text-slate-600 mt-1">2025年江西物理类本科线 429 分，选考<strong>物理+化学</strong>是冲清北与C9芯片/AI的铁门槛。</p>
+              </div>
+              <div class="bg-white rounded-xl p-3 border border-amber-100">
+                <div class="font-bold text-slate-900">第一档：冲刺清华 / 北大</div>
+                <div class="text-rose-600 font-extrabold text-sm mt-0.5">2025参考：清华物理类 ~689分</div>
+                <p class="text-slate-600 mt-1">中等偏高竞争省份清北率约 0.05%–0.09%，裸分名额不到一半，强烈建议同步准备强基计划。</p>
+              </div>
+              <div class="bg-white rounded-xl p-3 border border-amber-100">
+                <div class="font-bold text-slate-900">第二档：华五芯片与AI王牌</div>
+                <div class="text-indigo-700 font-extrabold text-sm mt-0.5">全省顶尖千名内冲刺梯队</div>
+                <p class="text-slate-600 mt-1">复旦微电子、上交ACM/电院、浙大图灵、中科大、南大AI学院，紧随清北之后，长三角产业红利极强。</p>
+              </div>
+              <div class="bg-white rounded-xl p-3 border border-amber-100">
+                <div class="font-bold text-slate-900">第三档：C9高性价比工科</div>
+                <div class="text-emerald-700 font-extrabold text-sm mt-0.5">2025参考：607–617分起（约4400名）</div>
+                <p class="text-slate-600 mt-1">2025江西物理类西交大501组比肩617分（约4400名）、哈工大501组最低607分起（热门计算机/AI组更高）。</p>
+              </div>
+            </div>
+            <p class="text-xs text-slate-700 leading-relaxed">
+              <strong class="text-slate-900">张雪峰式江西大白话：</strong>江西考清北难度很大，如果高三模考稳在全省最顶尖梯队，冲清北时<strong>强基计划 + 裸分两条腿走路</strong>；如果分数落在华五或全省前 1,000–4,500 名区间，千万别为了凑清北名头去冷门专业调剂，直接拿<strong>复旦微电子、上交/浙大/南大 AI、哈工大（深圳）或西交大</strong>的王牌组，毕业进华为海思/大模型大厂或保研清北照样起飞！（数据来源：<a href="https://news.sciencenet.cn/htmlnews/2025/7/548117.shtm" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline">科学网2025江西投档线报道 ↗</a> · <a href="https://gaokao.eol.cn/gkbm/" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline">2026高考人数统计 ↗</a>）
+            </p>
+          </div>
+
+          <!-- Interactive C9 Filters -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">按你感兴趣的方向筛选 C9 王牌</p>
+              <div id="c9FocusGroup" class="flex flex-wrap gap-2">
+                <button type="button" data-focus="all" class="c9-focus-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-900 text-white">全部方向（AI/芯片/计算机）</button>
+                <button type="button" data-focus="ai" class="c9-focus-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200">人工智能 (AI)</button>
+                <button type="button" data-focus="chip" class="c9-focus-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200">芯片设计 / 集成电路</button>
+                <button type="button" data-focus="cs" class="c9-focus-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200">计算机与拔尖实验班</button>
+              </div>
+            </div>
+            <div>
+              <p class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">按考分梯队筛选平替院校</p>
+              <div id="c9TierGroup" class="flex flex-wrap gap-2">
+                <button type="button" data-tier="all" class="c9-tier-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-indigo-600 text-white">全部 C9 九校</button>
+                <button type="button" data-tier="t1" class="c9-tier-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-indigo-50 text-indigo-800 hover:bg-indigo-100">第一档：清北冲刺</button>
+                <button type="button" data-tier="t2" class="c9-tier-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-indigo-50 text-indigo-800 hover:bg-indigo-100">第二档：华东五校</button>
+                <button type="button" data-tier="t3" class="c9-tier-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-indigo-50 text-indigo-800 hover:bg-indigo-100">第三档：C9高性价比工科</button>
+              </div>
+            </div>
+          </div>
+
+          <div id="c9CardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        </div>
+      </div>
+
       <!-- Future Industry Trend Summary Table -->
       <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
         <h3 class="font-bold text-slate-900 mb-3">未来 5 年行业就业趋势与个人破局路径</h3>
@@ -688,11 +761,11 @@
         <p class="text-slate-600">安装后即可像原生 App 一样全屏打开，并支持离线阅读与每日自动同步最新数据：</p>
         <div class="bg-slate-50 rounded-xl p-3.5 border border-slate-200 space-y-1.5">
           <div class="font-bold text-slate-900">iPhone / iPad（Safari 浏览器）</div>
-          <p class="text-xs text-slate-600">点击底部中央「分享」图标（方框带向上箭头） → 向上滑动 → 点击「添加到主屏幕」→ 右上角「添加」。</p>
+          <p class="text-xs text-slate-600">点击底部中央「分享」图标 → 选择「添加到主屏幕」→ 右上角「添加」。</p>
         </div>
         <div class="bg-slate-50 rounded-xl p-3.5 border border-slate-200 space-y-1.5">
           <div class="font-bold text-slate-900">安卓手机（Chrome / Edge 浏览器）</div>
-          <p class="text-xs text-slate-600">点击右上角菜单（三个点）→ 选择「安装应用」或「添加到主屏幕」。</p>
+          <p class="text-xs text-slate-600">点击右上角菜单 → 选择「安装应用」或「添加到主屏幕」。</p>
         </div>
         <button id="confirmInstallModalBtn" type="button" class="w-full py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm transition-colors">我知道了</button>
       </div>
@@ -1222,6 +1295,126 @@
       }
     ];
 
+    const C9_DATA = [
+      {
+        id: 'c9_thu',
+        school: '清华大学',
+        tier: 't1',
+        tierLabel: '第一档 · 顶尖冲刺',
+        focus: ['ai', 'cs', 'chip'],
+        programs: '姚班（计算机科学实验班）、通班（通用AI实验班）、计算机系、集成电路学院',
+        rankRef: '全省顶尖排位（大省约前0.03%，北京约前0.7%–0.85%）；姚班面向已录取新生二次选拔，必选物化。',
+        highlight: '姚班由图灵奖得主姚期智院士2005年创办，设「计算机科学、人工智能、量子信息」三大方向自由选；通班2021年与北大联合启动，设于自动化系，本博贯通覆盖具身智能、多智能体等六大AI核心领域。',
+        advice: '张雪峰式大白话：国内工科与AI天花板，进姚班/通班基本锁定顶会科研或顶级AI大厂核心研发；注意清北裸分名额不到一半，能冲强基和竞赛一定要提前布局。',
+        url: 'https://join-tsinghua.edu.cn/info/1005/2220.htm',
+        sourceName: '清华2026姚班选拔方案'
+      },
+      {
+        id: 'c9_pku',
+        school: '北京大学',
+        tier: 't1',
+        tierLabel: '第一档 · 顶尖冲刺',
+        focus: ['ai', 'cs', 'chip'],
+        programs: '图灵班、智班（智能科学与技术）、信班（电子信息与芯片）、通班（元培）、集成电路学院',
+        rankRef: '与清华并列全国第一档；强基「信息与计算科学」可优先推荐进图灵班，必选物化。',
+        highlight: '图灵班2017年创办，由图灵奖得主John Hopcroft任指导委员会主任，颁发图灵荣誉学位；信班每年约30人与集成电路学院深度联动，主攻集成微纳电子、芯片设计与EDA系统。',
+        advice: '张雪峰式大白话：数理底子极厚，非常适合想做底层AI大模型理论、算法创新或高端芯片架构的同学；走芯片设计/EDA方向建议做好读研/读博准备，本科学历只能摸到门槛。',
+        url: 'https://eecs.pku.edu.cn/jyjx/tsxm.htm',
+        sourceName: '北大信科特色项目官网'
+      },
+      {
+        id: 'c9_fdu',
+        school: '复旦大学',
+        tier: 't2',
+        tierLabel: '第二档 · 华东五校',
+        focus: ['chip', 'ai', 'cs'],
+        programs: '集成电路与微纳电子创新学院（原微电子学院）、计算与智能创新学院',
+        rankRef: '华五头部档位（参考2025物理类：北京680、天津690、河北680、山西677）。',
+        highlight: '复旦微电子是全国芯片设计金字招牌，直接背靠上海张江集成电路产业集群；计算与智能创新学院把AI、计算机、网安集群培养，并与数学、生命科学、社会科学深度打通。',
+        advice: '张雪峰式大白话：考不上清北但想干「芯片设计」，复旦微电子闭眼排在最前列！区位+校友圈在上海芯片圈统治力极强，芯片岗普遍要求硕士起步，保研率优势很大。',
+        url: 'https://sme.fudan.edu.cn/',
+        sourceName: '复旦微电子学院官网'
+      },
+      {
+        id: 'c9_sjtu',
+        school: '上海交通大学',
+        tier: 't2',
+        tierLabel: '第二档 · 华东五校',
+        focus: ['ai', 'cs', 'chip'],
+        programs: 'ACM班（致远学院）、人工智能学院、电子信息与电气工程/集成电路',
+        rankRef: '与复旦同属华五最高档（紧随清北之后），工科热门专业组分数极高。',
+        highlight: '2002年创办的ACM班是国内计算机精英培养老牌标杆，毕业生大量进入国内外顶尖高校教职以及亚马逊、字节AI Lab等核心团队；上交工科产学研转化能力极强。',
+        advice: '张雪峰式大白话：最适合「想进一线大厂拿高薪、重实战与就业」的工科学霸。上海本地AI与芯片头部企业校招几乎把上交当主场，本科直接就业或申名校硕博两头都硬。',
+        url: 'https://news.sciencenet.cn/htmlnews/2022/1/472647.shtm',
+        sourceName: '科学网精英班报道'
+      },
+      {
+        id: 'c9_zju',
+        school: '浙江大学',
+        tier: 't2',
+        tierLabel: '第二档 · 华东五校',
+        focus: ['ai', 'cs', 'chip'],
+        programs: '竺可桢学院图灵班（计算机/AI）、2026新增具身智能与脑机智能创新班、微电子',
+        rankRef: '华五核心档位（仅次于清北复交），实行招生大类内专业任选。',
+        highlight: '浙大图灵班由图灵奖得主Whitfield Diffie及吴朝晖、陈纯、潘云鹤、沈向洋等院士领衔，“四全一专”一对一导师制；2026年全新推出具身智能、脑机智能等前沿特色班。',
+        advice: '张雪峰式大白话：杭州AI产业和创业氛围拉满，加上大类内专业任选对怕被调剂的学生非常友好；既想搞AI前沿又看重互联网/机器人产业红利的同学，浙大非常香。',
+        url: 'http://ckc.zju.edu.cn/2026/0731/c54005a3192931/page.htm',
+        sourceName: '浙大2026图灵班简章'
+      },
+      {
+        id: 'c9_ustc',
+        school: '中国科学技术大学',
+        tier: 't2',
+        tierLabel: '第二档 · 华东五校',
+        focus: ['chip', 'cs', 'ai'],
+        programs: '少年班学院、计算机学院、微电子/集成电路、量子信息',
+        rankRef: '华五核心档位，理科/工科试验班生源极纯，保研深造比例常年名列前茅。',
+        highlight: '走出寒武纪CEO陈天石等AI芯片领军人物，基础数理训练堪称魔鬼级扎实，在量子计算、底层芯片器件与AI算法基础研究方面科研平台顶级。',
+        advice: '张雪峰式大白话：在合肥专心读书做科研的绝佳圣地，缺点是城市娱乐少，但优点是学风极纯粹、读博和出国深造认可度极高——想走硬核技术研发或芯片底层架构首选。',
+        url: 'https://news.sciencenet.cn/htmlnews/2022/1/472647.shtm',
+        sourceName: '科学网少年班报道'
+      },
+      {
+        id: 'c9_nju',
+        school: '南京大学',
+        tier: 't2',
+        tierLabel: '第二档 · 华东五校',
+        focus: ['ai', 'cs', 'chip'],
+        programs: '人工智能学院（周志华院士领衔）、计算机拔尖班、集成电路学院（苏州校区）',
+        rankRef: '华五档位，人工智能与计算机专业组在华五中竞争激烈但性价比突出。',
+        highlight: '南大人工智能学院由2025年当选中国科学院院士的机器学习权威周志华教授领衔，依托计算机软件新技术国家重点实验室，AI学术论文与算法培养口碑在全国第一梯队。',
+        advice: '张雪峰式大白话：如果你最爱「AI算法与机器学习理论」，考不上清北姚班/图灵班，南大AI学院是最顶级的平替之一！本科跟着大佬发论文，保研去清北或拿大厂核心算法岗都很稳。',
+        url: 'https://www.nju.edu.cn/ysl/info/1002/8971.htm',
+        sourceName: '南京大学官网介绍'
+      },
+      {
+        id: 'c9_hit',
+        school: '哈尔滨工业大学',
+        tier: 't3',
+        tierLabel: '第三档 · C9高性价比工科',
+        focus: ['ai', 'cs', 'chip'],
+        programs: '计算学部、2026首批「具身智能」新专业、微电子（本部+深圳校区）',
+        rankRef: 'C9中分数线相对亲民的工科强校（深圳校区计算机/AI分较高，本部性价比极高）。',
+        highlight: '2026年教育部超常设置首批增设「具身智能」的9所高校之一；计算学部实力稳居全国前列，航天、机器人与智能无人系统工科底蕴深厚。',
+        advice: '张雪峰式大白话：分够不到清北华五时的工科王牌平替！想留在粤港澳大湾区进华为、腾讯、大疆，优先冲哈工大（深圳）；看重C9牌子+低分读王牌计算机/机器人，本部性价比无敌。',
+        url: 'https://www.cernet.edu.cn/xxh/focus/zc/202604/t20260430_2732185.shtml',
+        sourceName: '教育部2026目录公告'
+      },
+      {
+        id: 'c9_xjtu',
+        school: '西安交通大学',
+        tier: 't3',
+        tierLabel: '第三档 · C9高性价比工科',
+        focus: ['chip', 'ai', 'cs'],
+        programs: '工科试验班（钱学森班）、人工智能、微电子/集成电路、计算机',
+        rankRef: 'C9中另一所高性价比硬核工科强校，适合冲刺C9平台并稳保王牌工科专业。',
+        highlight: '钱学森班实行2+2+X本硕贯通与双导师制，设智能技术与自动化、智能制造等交叉模块；微电子与电气信息学科基础扎实，对接西部半导体与能源智能产业。',
+        advice: '张雪峰式大白话：想用相对温和的C9位次拿下「芯片/AI/计算机」且希望本硕稳健深造，西交大非常务实；不仅互联网大厂认，进国家电网、航天军工和半导体国企也是一把好手。',
+        url: 'https://shaanxi.eol.cn/shxgd/202403/t20240315_2564101.shtml',
+        sourceName: '西交钱学森班解读'
+      }
+    ];
+
     // ==================== STATE MANAGEMENT ====================
     const state = {
       activeTab: 'brief',
@@ -1232,6 +1425,8 @@
       handoutOutput: 'notes',
       majorTrack: 'all',
       careerGoal: 'all',
+      c9Focus: 'all',
+      c9Tier: 'all',
       bookmarks: [],
       notes: ''
     };
@@ -1605,6 +1800,56 @@
       lucide.createIcons();
     }
 
+    function renderC9() {
+      const grid = document.getElementById('c9CardsGrid');
+      if (!grid) return;
+      const filtered = C9_DATA.filter(item => {
+        const focusOk = state.c9Focus === 'all' || item.focus.includes(state.c9Focus);
+        const tierOk = state.c9Tier === 'all' || item.tier === state.c9Tier;
+        return focusOk && tierOk;
+      });
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div class="col-span-full text-center py-6 text-sm text-slate-500">当前筛选组合暂无匹配院校，请切换筛选条件查看全部 C9 九校。</div>`;
+        return;
+      }
+      grid.innerHTML = filtered.map(c => {
+        const saved = isBookmarked(c.id);
+        const tierBadge = c.tier === 't1'
+          ? 'bg-rose-50 text-rose-700 border-rose-200'
+          : (c.tier === 't2' ? 'bg-indigo-50 text-indigo-700 border-indigo-200' : 'bg-emerald-50 text-emerald-700 border-emerald-200');
+        return `
+          <article class="bg-slate-50 rounded-2xl p-5 border border-slate-200 flex flex-col justify-between hover:border-indigo-300 transition-colors">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full border ${tierBadge}">${c.tierLabel}</span>
+                <button type="button" data-bm-id="${c.id}" class="bm-c9-btn p-1 rounded-lg hover:bg-slate-200/60 ${saved ? 'text-indigo-600' : 'text-slate-400'}" title="收藏院校">
+                  <i data-lucide="${saved ? 'bookmark-check' : 'bookmark'}" class="w-4 h-4"></i>
+                </button>
+              </div>
+              <h4 class="font-extrabold text-slate-900 text-lg mb-1">${c.school}</h4>
+              <p class="text-xs font-semibold text-indigo-700 mb-2">${c.programs}</p>
+              <p class="text-xs text-slate-700 leading-relaxed mb-2"><strong>报考位次/门槛：</strong>${c.rankRef}</p>
+              <p class="text-xs text-slate-600 leading-relaxed mb-2"><strong>王牌特色：</strong>${c.highlight}</p>
+            </div>
+            <div class="mt-3 pt-3 border-t border-slate-200/80 space-y-2">
+              <p class="text-[11px] text-slate-800 bg-white rounded-lg px-3 py-2 border border-indigo-100 leading-relaxed"><strong class="text-indigo-700">务实建议：</strong>${c.advice}</p>
+              <div class="flex justify-end">
+                <a href="${c.url}" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-indigo-600 hover:underline">${c.sourceName} ↗</a>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+
+      grid.querySelectorAll('.bm-c9-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const item = C9_DATA.find(i => i.id === btn.dataset.bmId);
+          if (item) toggleBookmark({ id: item.id, title: 'C9择校 · ' + item.school, tag: item.tierLabel, tab: 'career', url: item.url });
+        });
+      });
+      lucide.createIcons();
+    }
+
     function updateBookmarkUI() {
       const badge = document.getElementById('bookmarkBadge');
       if (badge) badge.textContent = String(state.bookmarks.length);
@@ -1649,6 +1894,7 @@
       renderPolicies();
       renderFrontier();
       renderMajors();
+      renderC9();
     }
 
     // ==================== CHARTS ====================
@@ -1760,6 +2006,7 @@
       POLICY_ITEMS.forEach(p => list.push({ title: p.title, sub: '政策 · ' + p.summary, tab: 'policy' }));
       FRONTIER_ITEMS.forEach(f => list.push({ title: f.title, sub: '前沿 · ' + f.summary, tab: 'frontier' }));
       MAJORS_DATA.forEach(m => list.push({ title: '专业报考：' + m.name, sub: m.schools + ' · ' + m.focus, tab: 'career' }));
+      C9_DATA.forEach(c => list.push({ title: 'C9择校：' + c.school + '（' + c.programs + '）', sub: c.rankRef + ' ' + c.advice, tab: 'career' }));
       return list;
     }
 
@@ -1951,32 +2198,49 @@
       renderPolicies();
       renderFrontier();
       renderAppVerticals();
+      // C9 filters
+      document.querySelectorAll('.c9-focus-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          state.c9Focus = btn.dataset.focus;
+          document.querySelectorAll('.c9-focus-btn').forEach(b => {
+            const active = b.dataset.focus === state.c9Focus;
+            b.className = active
+              ? 'c9-focus-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-900 text-white'
+              : 'c9-focus-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200';
+          });
+          renderC9();
+        });
+      });
+      document.querySelectorAll('.c9-tier-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          state.c9Tier = btn.dataset.tier;
+          document.querySelectorAll('.c9-tier-btn').forEach(b => {
+            const active = b.dataset.tier === state.c9Tier;
+            b.className = active
+              ? 'c9-tier-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-indigo-600 text-white'
+              : 'c9-tier-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-indigo-50 text-indigo-800 hover:bg-indigo-100';
+          });
+          renderC9();
+        });
+      });
+
       renderMajors();
+      renderC9();
       updateBookmarkUI();
       lucide.createIcons();
-
-      // PWA Service Worker registration
       if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
         navigator.serviceWorker.register('./sw.js').catch(() => {});
       }
-
-      // PWA Install Prompt & iOS Fallback Modal
       let deferredInstallPrompt = null;
       const installBtn = document.getElementById('installAppBtn');
       const installModal = document.getElementById('installModal');
-      window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredInstallPrompt = e;
-      });
+      window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredInstallPrompt = e; });
       if (installBtn) {
         installBtn.addEventListener('click', async () => {
           if (deferredInstallPrompt) {
             deferredInstallPrompt.prompt();
-            const choice = await deferredInstallPrompt.userChoice;
+            await deferredInstallPrompt.userChoice;
             deferredInstallPrompt = null;
-            if (choice && choice.outcome === 'accepted') {
-              showToast('已开始安装「智潮日报」到桌面');
-            }
           } else if (installModal) {
             installModal.classList.remove('hidden');
           }
@@ -1986,21 +2250,19 @@
         const el = document.getElementById(id);
         if (el && installModal) el.addEventListener('click', () => installModal.classList.add('hidden'));
       });
-      if (installModal) {
-        installModal.addEventListener('click', (e) => { if (e.target === installModal) installModal.classList.add('hidden'); });
-      }
-
-      // Auto-load latest daily_data.json when hosted over HTTP/HTTPS
       if (window.location.protocol.startsWith('http')) {
         fetch('./daily_data.json', { cache: 'no-store' })
           .then(res => res.ok ? res.json() : null)
           .then(data => {
             if (data && Array.isArray(data.todayDigests) && data.todayDigests.length > 0) {
               DAILY_DIGESTS.today = data.todayDigests;
+              if (data.updatedAt) {
+                const badge = document.getElementById('heroDateBadge');
+                if (badge) badge.textContent = `${data.updatedAt} · 自动更新版`;
+              }
               renderDailyDigest();
             }
-          })
-          .catch(() => {});
+          }).catch(() => {});
       }
     });
   </script>

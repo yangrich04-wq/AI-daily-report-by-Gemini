@@ -6,8 +6,8 @@
       "tag": "Google AI 动态",
       "color": "indigo",
       "tab": "capability",
-      "title": "谷歌Gemini重塑金州勇士队：从球馆运营到球迷体验的全面升级",
-      "summary": "谷歌Gemini与金州勇士及其主场大通中心达成深度合作，将AI技术全面引入体育商业运营与互动体验中。这展现了通用大模型在体育产业和商业管理中的落地前景，提示跨学科学生关注AI与具体行业（如体育、商业管理）相结合的应用场景与就业机会。",
+      "title": "Gemini 赋能金州勇士：重塑球队运营与球迷体验",
+      "summary": "谷歌 Gemini 与金州体育达成合作，为勇士队、女武神队及大通中心提供 AI 支持，全面升级球迷互动体验与商业运营效率。这表明大模型正加速落地传统体育与文娱产业，未来擅长将 AI 工具融入运营与用户体验设计的复合型人才将更具就业优势。",
       "sourceTitle": "Google AI Blog",
       "sourceUrl": "https://blog.google/products-and-platforms/products/gemini/gemini-golden-state/"
     },
@@ -16,8 +16,8 @@
       "tag": "Google AI 动态",
       "color": "indigo",
       "tab": "capability",
-      "title": "谷歌搜索迎来个性化升级：AI模式实现跨应用个人数据联动",
-      "summary": "用户可在AI模式下安全连接Google云端硬盘、钱包及Gemini应用，获得高度定制化的智能搜索体验。个人数据与大模型的深度绑定代表了未来检索和智能体交互的技术走向，建议相关专业学生关注个人数据安全、隐私保护与个性化推荐方向的技术革新。",
+      "title": "更懂你的谷歌搜索：AI 模式打通个人数据实现专属定制",
+      "summary": "谷歌搜索在 AI 模式下推出个性化智能功能，用户可安全授权连接谷歌钱包、云端硬盘与 Gemini 应用，从而获得高度定制的搜索回答。对学生而言，跨应用检索与个人知识管理正加速融合，善用个人智能代理将成为提升日常学习与科研效率的关键能力。",
       "sourceTitle": "Google AI Blog",
       "sourceUrl": "https://blog.google/products-and-platforms/products/search/google-search-personal-intelligence-apps/"
     },
@@ -26,8 +26,8 @@
       "tag": "OpenAI 动态",
       "color": "emerald",
       "tab": "capability",
-      "title": "GPT-6展示原生蛋白质设计能力：从逻辑推理到生物实验验证",
-      "summary": "GPT-6模型通过推理与代码编写能力，成功实现了蛋白质结构与序列的自主设计，并在实验室测试中验证了针对5个靶点的结合有效性。AI与生物学的交叉（AI for Science）正迅速爆发，生命科学及计算生物学背景的学生应提早掌握大模型工具，开拓科研与就业新路径。",
+      "title": "GPT-6 展现原生蛋白质设计能力，迈向生物科研新阶段",
+      "summary": "GPT-6 模型能够结合推理与编程能力直接设计蛋白质结构与序列，并在针对五个靶点的实验室测试中均发现了有效的结合证据。这一突破证明通用大模型已具备解决前沿生命科学难题的潜力，生物、医药及理工科学生应尽早关注并掌握“AI+科研”的新范式。",
       "sourceTitle": "OpenAI News",
       "sourceUrl": "https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities"
     },
@@ -36,8 +36,8 @@
       "tag": "OpenAI 动态",
       "color": "emerald",
       "tab": "capability",
-      "title": "借助Astra寻找遥远行星：业余天文学家的数据挖掘突破",
-      "summary": "两位业余天文学家借助OpenAI的Codex和Astra工具，在NASA开普勒及TESS太空望远镜的公开数据中成功发现了潜在的系外行星。这表明AI极大降低了前沿科学研究的门槛，非计算机专业学生也能利用大模型进行高效的数据分析与跨学科探索。",
+      "title": "业余天文爱好者借助 Codex 与 Astra 搜寻系外行星",
+      "summary": "两名业余天文学家利用 Codex 和 Astra 工具，成功从 NASA 开普勒与 TESS 太空望远镜的公开数据中发掘出潜在的系外行星。这充分说明 AI 编程与分析工具正大幅降低科研门槛，学生即使缺乏深厚的代码背景，也能借助 AI 挖掘公开数据集开展创新研究。",
       "sourceTitle": "OpenAI News",
       "sourceUrl": "https://openai.com/index/searching-for-distant-planets-with-astra"
     },
@@ -46,8 +46,8 @@
       "tag": "前沿与政策",
       "color": "cyan",
       "tab": "frontier",
-      "title": "AI生成请求引发信息洪流：美国公共记录公开系统面临重压",
-      "summary": "随着AI自动生成调取申请的普及，大量公共记录请求涌入基层政府，给公共信息公开系统和行政人员带来了前所未有的负担。这反映了新工具普及带来的社会治理与法律合规挑战，人文社科与法学相关学生可重点关注AI时代的公共政策制定与治理体系重构。",
+      "title": "AI 自动化请求激增，美国地方政府公开记录系统承压",
+      "summary": "随着 AI 工具被大量用于批量生成和提交政府信息公开请求，美国小型城镇原本人手紧缺的基层行政系统正面临严峻的处理压力。这一现象折射出 AI 在降低信息获取成本的同时也带来了公共治理与流程过载的新挑战，公共管理与政务数字化方向的同学需提前思考技术治理之道。",
       "sourceTitle": "MIT Technology Review",
       "sourceUrl": "https://www.technologyreview.com/2026/11/25/1149702/ai-is-straining-americas-open-records-systems/"
     },
@@ -56,8 +56,8 @@
       "tag": "前沿与政策",
       "color": "cyan",
       "tab": "frontier",
-      "title": "哲学大师质疑Anthropic：AI真的能拥有“意识”吗？",
-      "summary": "针对Anthropic公司关于AI可能具备意识的相关论调，知名哲学学者提出了强烈质疑，引发了学术界对人工智能心智模型的广泛讨论。AI伦理与心灵哲学已从纯理论探讨走向现实产业议题，人文社科背景的学生可深入关注AI伦理、大模型意识边界及人工智能哲学等新兴方向。",
+      "title": "知名哲学家质疑 Anthropic 关于“AI 意识”的论点",
+      "summary": "Anthropic 近期公开提及 AI 存在产生意识的可能性，但这一观点遭到了著名哲学家的明确质疑。这场围绕“机器意识”的跨界思辨提醒我们，在技术快速演进的背景下，AI 伦理、认知科学与哲学交叉领域的研究与就业价值正变得愈发重要。",
       "sourceTitle": "MIT Technology Review",
       "sourceUrl": "https://www.technologyreview.com/2026/11/23/1149569/a-legendary-philosopher-isnt-buying-anthropics-consciousness-argument/"
     }
