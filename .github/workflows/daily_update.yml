@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '.github/workflows/daily_update.yml'
+      - '*.zip'
   schedule:
     - cron: '0 0 * * *'
   workflow_dispatch:
@@ -17,6 +18,15 @@ jobs:
     steps:
       - name: 拉取仓库文件
         uses: actions/checkout@v4
+
+      - name: 自动解压上传的更新包
+        shell: bash
+        run: |
+          shopt -s nullglob
+          for z in *.zip; do
+            unzip -o "$z"
+            rm -f "$z"
+          done
 
       - name: 抓取最新 AI 动态并自动翻译提炼中文重点
         env:
@@ -106,5 +116,5 @@ jobs:
         run: |
           git config user.name "AI Daily Bot"
           git config user.email "bot@users.noreply.github.com"
-          git add daily_data.json
-          git diff --staged --quiet || (git commit -m "chore: 自动更新全中文AI日报" && git push)
+          git add -A
+          git diff --staged --quiet || (git commit -m "chore: 自动解压并更新全中文AI日报" && git push)
